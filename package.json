@@ -1,0 +1,22 @@
+{
+  "name": "def-ant-cli",
+  "version": "1.0.0",
+  "description": "Command Line Interface for Def-ant",
+  "main": "./lib",
+  "bin": {
+    "defiant": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hbi99/def-ant-cli.git"
+  },
+  "author": "Hakan Bilgin",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/hbi99/def-ant-cli/issues"
+  },
+  "homepage": "https://github.com/hbi99/def-ant-cli#readme"
+}
