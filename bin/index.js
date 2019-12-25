@@ -4,7 +4,7 @@
 let defiant = require("../lib")
 let aliases = defiant.aliases()
 let args = process.argv.splice(2)
-let cmd = aliases[args[0]]
+let cmd = aliases[args[0]] ? args[0] : false
 
 if (!cmd) {
 	Object.keys(aliases).map(c =>
