@@ -22,6 +22,7 @@
   "dependencies": {
     "cli-format": "^3.0.9",
     "colors": "^1.4.0",
+    "enquirer": "^2.3.2",
     "progress": "^2.0.3"
   }
 }
