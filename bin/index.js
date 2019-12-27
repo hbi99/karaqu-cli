@@ -16,4 +16,5 @@ if (!cmd) {
 // command not found - show help
 if (!cmd) return defiant.help()
 
-defiant[cmd]()
+// call function and pass on arguments
+defiant[cmd].apply(defiant, args.slice(1))
