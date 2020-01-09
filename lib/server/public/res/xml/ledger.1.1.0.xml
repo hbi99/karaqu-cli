@@ -1,0 +1,1305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ledger xmlns:ant="def-ant.com" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<details>
+		<meta name="system" value="Def-ant" version="1.1.0"/>
+		<meta name="company" value="Defiant System AB"/>
+		<meta name="author" value="Hakan Bilgin" email="hbi@longscript.com"/>
+	</details>
+	<applications>
+		<Application><Head><meta name="id" value="login"/><meta name="title" value="Login" version="1.0"/><meta name="author" value="Hakan Bilgin" namespace="ant"/><meta name="fullscreen" value="true"/><meta name="headless" value="true"/><meta name="script" value="main.js"/><meta name="style" value="main.less"/><meta name="icons" value="icons.svg"/><meta name="content" value="content.htm"/></Head> <script><![CDATA[ const e={init(){this.content=window.find("content"),this.loginPwd=window.find("input[name='loginPassword']"),this.forgotPassword=window.find(".forgot-password"),this.createAccount=window.find(".create-account"),this.content.on("keyup",this.dispatch),this.content.find(".user:nth(0)").addClass("selected").trigger("click"),this.loginPwd.val("Prover34"),setTimeout(()=>this.dispatch({type:"login-user"}),300)},async dispatch(t){let a,s,o,i,n,c=e;switch(t.type){case"keyup":if(13===t.keyCode)return c.dispatch({type:"login-user"});if(!t.target)return;if(s=$(t.target),"return"===t.char&&"loginPassword"===s.attr("name"))return this.dispatch({type:"login-user"});switch(s.attr("name")){case"forgot-email":i=new RegExp(s.attr("data-mask")),n=null!==s.val().match(i),c.forgotPassword.find("button.primary").toggleClass("disabled",n);break;case"confirm-pwd":o=c.createAccount.find("input[name='password']"),n=s.val()===o.val(),s.parent().toggleClass("check",!n).toggleClass("fail",n),c.createAccount.find("button.primary").toggleClass("disabled",n)}if(!s.attr("data-mask"))return;i=new RegExp(s.attr("data-mask")),n=null!==s.val().match(i),s.parent().toggleClass("check",!n).toggleClass("fail",n),n&&s.parent().addClass("check");break;case"login-user":a={username:this.content.find(".user.selected .name").attr("username"),password:this.loginPwd.val()},a.password||(this.loginPwd.parent().addClass("fail"),setTimeout(()=>this.loginPwd.parent().removeClass("fail"),900)),this.loginPwd[0].blur();const e=await $.fetch("/user/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(a)});if(e.error)return this.loginPwd.parent().addClass("fail"),setTimeout(()=>{this.loginPwd.select(),this.loginPwd.parent().removeClass("fail")},900);defiant.load(e),window.close();break;case"cancel-forgot-password":this.forgotPassword.find(".field").removeClass("check fail"),this.forgotPassword.find("input").val(""),this.content.removeClass("view-forgot-password");break;case"cancel-select-account":case"cancel-create-account":this.content.find(".user.selected").removeClass("selected"),this.content.removeClass("view-select-user view-create-account").addClass("view-bootup");break;case"select-account":$(t.target).parents(".user").addClass("selected"),this.content.removeClass("view-bootup").addClass("view-select-user"),setTimeout(()=>this.content.find(".user-pass input").focus(),500);break;case"forgot-password":this.content.addClass("view-forgot-password");break;case"reset-create-account":this.createAccount.find(".field").removeClass("check fail"),this.createAccount.find("input").val("");break;case"view-create-account":this.dispatch({type:"reset-create-account"}),this.content.removeClass("view-bootup").addClass("view-create-account");break;case"send-password-email":this.forgotPassword.addClass("fail"),setTimeout(()=>this.forgotPassword.removeClass("fail"),900);break;case"create-account":let r=!0;if(this.createAccount.find("input[data-mask]").map((e,t)=>{const a=$(t),s=a.attr("data-mask"),o=null!==a.val().match(s);a.parent().removeClass("check").toggleClass("fail",o),o?a.parent().addClass("check"):r=!1}),s=this.createAccount.find("input[name='confirm-pwd']"),o=this.createAccount.find("input[name='password']"),n=s.val()===o.val()&&""!==s.val(),n?s.parent().addClass("check"):(s.parent().removeClass("check").toggleClass("fail",n),r=!1),!r)return this.createAccount.addClass("fail"),void setTimeout(()=>this.createAccount.removeClass("fail"),900);console.log(r)}}};window.exports=e; ]]></script><style><![CDATA[ .ant-window_[data-id="login"] content{background:url('/res/img/mavericks.jpg');position:absolute;top:0;left:0;width:100%;height:100%;border:0;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:17px;line-height:1.35}.ant-window_[data-id="login"] content:before{content:'';position:absolute;top:-100px;left:0;right:0;bottom:0;background:radial-gradient(rgba(255,255,255,0.125) 0%, rgba(255,255,255,0) 60%)}.ant-window_[data-id="login"] content.view-bootup .login-options .bootup-options{opacity:1;visibility:visible}.ant-window_[data-id="login"] content.view-select-user .user:not(.selected){width:0;opacity:0;visibility:hidden;margin:0}.ant-window_[data-id="login"] content.view-select-user .users .user-pass{opacity:1;visibility:visible;-webkit-transition:all 150ms ease-out 225ms;-moz-transition:all 150ms ease-out 225ms;-ms-transition:all 150ms ease-out 225ms;transition:all 150ms ease-out 225ms}.ant-window_[data-id="login"] content.view-select-user .login-options .password-options{opacity:1;visibility:visible}.ant-window_[data-id="login"] content.view-forgot-password .users{opacity:0;visibility:hidden;pointer-events:none;-webkit-transition:all 150ms ease-out 0ms;-moz-transition:all 150ms ease-out 0ms;-ms-transition:all 150ms ease-out 0ms;transition:all 150ms ease-out 0ms}.ant-window_[data-id="login"] content.view-forgot-password .forgot-password{opacity:1;visibility:visible;pointer-events:all;-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);transform:scale(1);-webkit-transition:all 150ms ease-out 225ms;-moz-transition:all 150ms ease-out 225ms;-ms-transition:all 150ms ease-out 225ms;transition:all 150ms ease-out 225ms}.ant-window_[data-id="login"] content.view-forgot-password .login-options .password-options{opacity:0;visibility:hidden}.ant-window_[data-id="login"] content.view-forgot-password .login-options .forgot-password-options{opacity:1;visibility:visible}.ant-window_[data-id="login"] content.view-create-account .users{z-index:1;opacity:0;visibility:hidden;pointer-events:none;-webkit-transition:all 150ms ease-out 0ms;-moz-transition:all 150ms ease-out 0ms;-ms-transition:all 150ms ease-out 0ms;transition:all 150ms ease-out 0ms}.ant-window_[data-id="login"] content.view-create-account .create-account{z-index:2;opacity:1;visibility:visible;pointer-events:all;-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);transform:scale(1);-webkit-transition:all 150ms ease-out 225ms;-moz-transition:all 150ms ease-out 225ms;-ms-transition:all 150ms ease-out 225ms;transition:all 150ms ease-out 225ms}.ant-window_[data-id="login"] content.view-create-account .login-options .create-account-options{opacity:1;visibility:visible}.ant-window_[data-id="login"] content .icon{display:inline-block;width:21px;height:21px}.ant-window_[data-id="login"] content .icon.login-create-user{background:url(/app/ant/login/icons/create-user.png)}.ant-window_[data-id="login"] content .icon.login-icon-cancel{background:url(/app/ant/login/icons/cancel.png)}.ant-window_[data-id="login"] content .icon.login-icon-forgot-password{background:url(/app/ant/login/icons/forgot-password.png)}.ant-window_[data-id="login"] content .icon.login-chevron-right{background:url(/app/ant/login/icons/chevron-right.png)}.ant-window_[data-id="login"] content .icon.icon-check{background:url(/app/ant/login/icons/check.png)}.ant-window_[data-id="login"] content .icon.icon-fail{background:url(/app/ant/login/icons/times.png)}.ant-window_[data-id="login"] content .icon.login-icon-sleep{background:url(/app/ant/login/icons/sleep.png)}.ant-window_[data-id="login"] content .icon.login-icon-restart{background:url(/app/ant/login/icons/restart.png)}.ant-window_[data-id="login"] content .icon.login-icon-shutdown{background:url(/app/ant/login/icons/shutdown.png)}.ant-window_[data-id="login"] content input{width:100%;height:initial;border:0;background:transparent;padding:3px 31px 3px 9px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;letter-spacing:.5px;color:#fff}.ant-window_[data-id="login"] content input::placeholder{color:rgba(255,255,255,0.35);font-size:15px}.ant-window_[data-id="login"] content .def-ant-logo{position:absolute;top:11%;left:50%;width:173px;height:131px;transform:translateX(-50%);filter:drop-shadow(0 1px 0 rgba(255,255,255,0.45))}.ant-window_[data-id="login"] content .users{position:absolute;top:37%;left:100px;right:100px;text-align:center;font-size:15px;opacity:1;visibility:visible;-webkit-transition:all 150ms ease-out 300ms;-moz-transition:all 150ms ease-out 300ms;-ms-transition:all 150ms ease-out 300ms;transition:all 150ms ease-out 300ms}.ant-window_[data-id="login"] content .users .user{position:relative;top:0;left:0;width:96px;height:113px;margin:0 23px;display:inline-block;cursor:pointer;opacity:1;visibility:visible;-webkit-transition:all 225ms ease-out 0ms;-moz-transition:all 225ms ease-out 0ms;-ms-transition:all 225ms ease-out 0ms;transition:all 225ms ease-out 0ms}.ant-window_[data-id="login"] content .users .user.create .avatar .icon{width:100%;height:100%;border-radius:50%}.ant-window_[data-id="login"] content .users .user:hover:before{top:6px;left:6px;border-width:7px}.ant-window_[data-id="login"] content .users .user:before{content:'';position:absolute;top:12px;left:12px;width:70px;height:70px;border:0 solid rgba(255,255,255,0.2);border-radius:50%;-webkit-transition:all 180ms ease-out 0ms;-moz-transition:all 180ms ease-out 0ms;-ms-transition:all 180ms ease-out 0ms;transition:all 180ms ease-out 0ms}.ant-window_[data-id="login"] content .users .user .avatar{background:50% 50% no-repeat;background-size:cover;position:absolute;top:13px;left:13px;width:70px;height:70px;z-index:2;border-radius:50%;display:inline-block}.ant-window_[data-id="login"] content .users .user .avatar:before,.ant-window_[data-id="login"] content .users .user .avatar:after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;border-radius:inherit}.ant-window_[data-id="login"] content .users .user .avatar:before{box-shadow:inset 0 1px 1px rgba(255,255,255,0.5)}.ant-window_[data-id="login"] content .users .user .avatar:after{box-shadow:inset 0 -1px 1px rgba(0,0,0,0.6)}.ant-window_[data-id="login"] content .users .user .name{position:absolute;left:-40px;right:-40px;bottom:0;opacity:1;white-space:nowrap;color:#fff;font-weight:400;text-shadow:0 1px 1px rgba(0,0,0,0.3)}.ant-window_[data-id="login"] content .users .user-pass{position:relative;width:181px;height:31px;margin:21px auto;border-radius:5px;background:rgba(255,255,255,0.15);opacity:0;visibility:hidden;-webkit-transition:all 150ms ease-out 0ms;-moz-transition:all 150ms ease-out 0ms;-ms-transition:all 150ms ease-out 0ms;transition:all 150ms ease-out 0ms}.ant-window_[data-id="login"] content .users .user-pass.fail{animation:shake .82s cubic-bezier(.36, .07, .19, .97) both}.ant-window_[data-id="login"] content .users .user-pass input:placeholder-shown+.chevron-right{display:none}.ant-window_[data-id="login"] content .users .user-pass input::selection{background:#ddd}.ant-window_[data-id="login"] content .users .user-pass .chevron-right{position:absolute;top:3px;right:-37px;width:25px;height:25px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer}.ant-window_[data-id="login"] content .users .user-pass .chevron-right:hover{background:rgba(255,255,255,0.35)}.ant-window_[data-id="login"] content .users .user-pass .chevron-right .icon{position:absolute;top:5px;left:5px;width:15px;height:15px}.ant-window_[data-id="login"] content .forgot-password,.ant-window_[data-id="login"] content .create-account{position:absolute;top:23%;left:calc(50% - 200px);width:400px;border-radius:7px;background:#eff0f1;color:#111;text-align:center;opacity:0;visibility:hidden;pointer-events:none;-webkit-transform:scale(.9);-moz-transform:scale(.9);-ms-transform:scale(.9);transform:scale(.9);-webkit-transition:all 150ms ease-out 0ms;-moz-transition:all 150ms ease-out 0ms;-ms-transition:all 150ms ease-out 0ms;transition:all 150ms ease-out 0ms}.ant-window_[data-id="login"] content .forgot-password.fail,.ant-window_[data-id="login"] content .create-account.fail{animation:shake .82s cubic-bezier(.36, .07, .19, .97) both}.ant-window_[data-id="login"] content .forgot-password p,.ant-window_[data-id="login"] content .create-account p{color:#444}.ant-window_[data-id="login"] content .forgot-password input,.ant-window_[data-id="login"] content .create-account input{background:#fff;border-radius:4px;border:1px solid #d8d8d8;padding:5px 9px;font-size:15px;line-height:1.65;color:#111}.ant-window_[data-id="login"] content .forgot-password input::placeholder,.ant-window_[data-id="login"] content .create-account input::placeholder{font-weight:400;letter-spacing:.5px;color:#bbb}.ant-window_[data-id="login"] content .forgot-password input:focus,.ant-window_[data-id="login"] content .create-account input:focus{border-color:#6f9ad9a0;box-shadow:0 0 0 3px #6f9ad960}.ant-window_[data-id="login"] content .forgot-password button,.ant-window_[data-id="login"] content .create-account button{background:linear-gradient(#fff, #e3e3e3);border:1px solid #d0d0d0;border-radius:4px;padding:4px 15px;font-size:15px;line-height:1.4;margin:0 1px;height:37px;vertical-align:top}.ant-window_[data-id="login"] content .forgot-password button:active:not(.disabled),.ant-window_[data-id="login"] content .create-account button:active:not(.disabled){padding:5px 15px 3px;background:linear-gradient(#e3e3e3, #eee);box-shadow:0 1px 0 rgba(255,255,255,0.5)}.ant-window_[data-id="login"] content .forgot-password button.primary,.ant-window_[data-id="login"] content .create-account button.primary{background:linear-gradient(#42a1ec, #0070c9);border-color:#07c;color:#fff}.ant-window_[data-id="login"] content .forgot-password button.primary:active:not(.disabled),.ant-window_[data-id="login"] content .create-account button.primary:active:not(.disabled){background:linear-gradient(#0070c9, #40a0f9)}.ant-window_[data-id="login"] content .forgot-password button.disabled,.ant-window_[data-id="login"] content .create-account button.disabled{background:#e0e0e0;border-color:#d0d0d0;color:#999}.ant-window_[data-id="login"] content .forgot-password .head,.ant-window_[data-id="login"] content .create-account .head{padding:23px 17px 21px;font-size:19px;font-weight:500}.ant-window_[data-id="login"] content .forgot-password .head>div,.ant-window_[data-id="login"] content .create-account .head>div{display:none}.ant-window_[data-id="login"] content .forgot-password .body,.ant-window_[data-id="login"] content .create-account .body{background:#fefefe;border-top:1px solid #bfc0c1;border-bottom:1px solid #bfc0c1;padding:29px 23px}.ant-window_[data-id="login"] content .forgot-password .body p,.ant-window_[data-id="login"] content .create-account .body p{font-size:15px;line-height:1.5;padding-bottom:21px}.ant-window_[data-id="login"] content .forgot-password .body .field,.ant-window_[data-id="login"] content .create-account .body .field{position:relative;float:left;width:100%;padding:5px 3px}.ant-window_[data-id="login"] content .forgot-password .body .field.ffn,.ant-window_[data-id="login"] content .create-account .body .field.ffn{width:50%}.ant-window_[data-id="login"] content .forgot-password .body .field.fln,.ant-window_[data-id="login"] content .create-account .body .field.fln{width:50%}.ant-window_[data-id="login"] content .forgot-password .body .field.check .icon.icon-check,.ant-window_[data-id="login"] content .create-account .body .field.check .icon.icon-check{display:block}.ant-window_[data-id="login"] content .forgot-password .body .field.fail .icon.icon-fail,.ant-window_[data-id="login"] content .create-account .body .field.fail .icon.icon-fail{display:block}.ant-window_[data-id="login"] content .forgot-password .body .field.checking .icon.icon-loading,.ant-window_[data-id="login"] content .create-account .body .field.checking .icon.icon-loading{display:block}.ant-window_[data-id="login"] content .forgot-password .body .field .icon,.ant-window_[data-id="login"] content .create-account .body .field .icon{display:none;position:absolute;top:15px;right:11px;width:17px;height:17px}.ant-window_[data-id="login"] content .forgot-password .body .field .icon.icon-loading,.ant-window_[data-id="login"] content .create-account .body .field .icon.icon-loading{top:12px;right:10px;width:22px;height:22px}.ant-window_[data-id="login"] content .forgot-password .body .field .icon.icon-loading use,.ant-window_[data-id="login"] content .create-account .body .field .icon.icon-loading use{opacity:1;visibility:visible}.ant-window_[data-id="login"] content .forgot-password .body .field .icon.icon-check,.ant-window_[data-id="login"] content .create-account .body .field .icon.icon-check{filter:sepia() saturate(2) hue-rotate(90deg)}.ant-window_[data-id="login"] content .forgot-password .body .field .icon.icon-fail,.ant-window_[data-id="login"] content .create-account .body .field .icon.icon-fail{filter:sepia() saturate(7) hue-rotate(320deg)}.ant-window_[data-id="login"] content .forgot-password .foot,.ant-window_[data-id="login"] content .create-account .foot{padding:15px 19px;text-align:right}.ant-window_[data-id="login"] content .login-options{position:absolute;bottom:7%;left:0;right:0;height:91px;text-align:center;font-size:15px;white-space:nowrap}.ant-window_[data-id="login"] content .login-options>div{position:absolute;top:0;left:50%;opacity:0;visibility:hidden;-webkit-transition:all 150ms ease-out 0ms;-moz-transition:all 150ms ease-out 0ms;-ms-transition:all 150ms ease-out 0ms;transition:all 150ms ease-out 0ms;-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.ant-window_[data-id="login"] content .login-options .action{position:relative;width:103px;height:89px;margin:0 23px;display:inline-block;cursor:pointer}.ant-window_[data-id="login"] content .login-options .action:hover:before{opacity:1}.ant-window_[data-id="login"] content .login-options .action:hover .icon{filter:brightness(2) drop-shadow(0 1px 0 rgba(0,0,0,0.5))}.ant-window_[data-id="login"] content .login-options .action:hover .text{color:rgba(255,255,255,0.85)}.ant-window_[data-id="login"] content .login-options .action:before{opacity:0;content:"";position:absolute;top:-9px;left:calc(50% - 34px);width:68px;height:68px;background:rgba(0,0,0,0.15);box-shadow:inset 0 1px 0 rgba(0,0,0,0.3),0 1px 0 rgba(255,255,255,0.15);border-radius:50%;-webkit-transition:all 250ms ease-out 0ms;-moz-transition:all 250ms ease-out 0ms;-ms-transition:all 250ms ease-out 0ms;transition:all 250ms ease-out 0ms}.ant-window_[data-id="login"] content .login-options .action .icon{position:relative;z-index:2;width:46px;height:46px;filter:brightness(1) drop-shadow(0 1px 0 rgba(0,0,0,0.5));-webkit-transition:all 250ms ease-out 0ms;-moz-transition:all 250ms ease-out 0ms;-ms-transition:all 250ms ease-out 0ms;transition:all 250ms ease-out 0ms}.ant-window_[data-id="login"] content .login-options .action .text{position:absolute;bottom:3px;left:-5px;right:-5px;white-space:nowrap;color:rgba(255,255,255,0.5);text-shadow:0 1px 1px rgba(0,0,0,0.7);text-align:center}@-moz-keyframes shake{10%,90%{transform:translate3d(-2px, 0, 0)}20%,80%{transform:translate3d(4px, 0, 0)}30%,50%,70%{transform:translate3d(-8px, 0, 0)}40%,60%{transform:translate3d(8px, 0, 0)}}@-webkit-keyframes shake{10%,90%{transform:translate3d(-2px, 0, 0)}20%,80%{transform:translate3d(4px, 0, 0)}30%,50%,70%{transform:translate3d(-8px, 0, 0)}40%,60%{transform:translate3d(8px, 0, 0)}}@keyframes shake{10%,90%{transform:translate3d(-2px, 0, 0)}20%,80%{transform:translate3d(4px, 0, 0)}30%,50%,70%{transform:translate3d(-8px, 0, 0)}40%,60%{transform:translate3d(8px, 0, 0)}} ]]></style><WindowBody><![CDATA[ <content class="view-bootup"><svg class="def-ant-logo"><use href="#login-def-ant-logo"/></svg><div class="users" data-click="select-user"><ul><li class="user" data-click="select-account"><div class="avatar" style="background-image: url('/res/img/hbi.jpg');"></div><span class="name" username="hbi">Hakan Bilgin</span></li><li class="user" data-click="select-account"><div class="avatar" style="background-image: url('/res/img/sarienn.jpg');"></div><span class="name" username="sarienn">Laura Bularca</span></li><li class="user create" data-click="view-create-account"><div class="avatar"><i class="icon login-create-user"></i></div><span class="name" username="guest">Create Account</span></li></ul><div class="user-pass"><input type="password" name="loginPassword" spellcheck="false" autocomplete="off" placeholder="Enter Password"/><span class="chevron-right" data-click="login-user"><i class="icon login-chevron-right"></i></span></div></div><div class="create-account"><div class="head"><span>Create Account</span></div><div class="body clearfix"><p>Make sure your password is at least six characters long and contains digits as well as capitals.</p><form autocomplete="off"><div class="field ffn"><input type="text" name="firstName" spellcheck="false" autocomplete="off" placeholder="First name" data-mask="^\w{2,}$"/><i class="icon icon-check"></i><i class="icon icon-fail"></i></div><div class="field fln"><input type="text" name="lastName" spellcheck="false" autocomplete="off" placeholder="Last name" data-mask="^\w{2,}$"/><i class="icon icon-check"></i><i class="icon icon-fail"></i></div><div class="field"><input type="email" name="email" spellcheck="false" autocomplete="off" placeholder="E-mail" data-mask="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"/><i class="icon icon-check"></i><i class="icon icon-fail"></i></div><div class="field"><input type="text" name="username" spellcheck="false" autocomplete="off" placeholder="Username" data-mask="^\w{3,}$"/><i class="icon icon-check"></i><i class="icon icon-fail"></i><svg class="icon icon-loading"><use href="#login-svg-loading"/></svg></div><div class="field"><input type="password" name="password" spellcheck="false" autocomplete="off" placeholder="Password" data-mask="^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})"/><i class="icon icon-check"></i><i class="icon icon-fail"></i></div><div class="field"><input type="password" name="confirm-pwd" spellcheck="false" autocomplete="off" placeholder="Confirm Password" /><i class="icon icon-check"></i><i class="icon icon-fail"></i></div></form></div><div class="foot"><button data-click="create-account" class="primary disabled">Continue</button></div></div><div class="forgot-password"><div class="head">Forgot Password</div><div class="body clearfix"><p>Did you forgot your password?<br/>Enter your e-mail adress to get started.</p><form autocomplete="off"><div class="field"><input type="email" name="forgot-email" spellcheck="false" autocomplete="off" placeholder="E-mail" data-mask="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"/><i class="icon icon-check"></i><i class="icon icon-fail"></i></div></form></div><div class="foot"><button data-click="send-password-email" class="primary disabled">Continue</button></div></div><div class="login-options"><div class="password-options"><div class="action" data-click="cancel-select-account"><i class="icon login-icon-cancel"></i><span class="text">Cancel</span></div><div class="action" data-click="forgot-password"><i class="icon login-icon-forgot-password"></i><span class="text">Forgot Password</span></div></div><div class="forgot-password-options"><div class="action" data-click="cancel-forgot-password"><i class="icon login-icon-cancel"></i><span class="text">Cancel</span></div></div><div class="create-account-options"><div class="action" data-click="cancel-create-account"><i class="icon login-icon-cancel"></i><span class="text">Cancel</span></div></div><!----><div class="bootup-options"><div class="action" data-click="sleep"><i class="icon login-icon-sleep"></i><span class="text">Sleep</span></div><div class="action" data-click="restart"><i class="icon login-icon-restart"></i><span class="text">Restart</span></div><div class="action" data-click="shutdown"><i class="icon login-icon-shutdown"></i><span class="text">Shut Down</span></div></div></div></content> ]]></WindowBody><WindowIcons><![CDATA[ <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"><svg id="login-def-ant-logo" viewBox="0 0 1024 1024" cache="false"><linearGradient id="logo-gradient" x2="0" y2="1"><stop offset="0%" stop-color="rgba(0,0,0,0.4)" /><stop offset="100%" stop-color="rgba(0,0,0,0.3)" /></linearGradient><path fill="url(#logo-gradient)" d="M993.326,144.804c-21.81-37.78-81.303-65.25-181.878-83.976c-81.396-15.155-186.725-23.501-296.586-23.501 c-110.747,0-217.438,8.433-300.416,23.745c-45.358,8.37-83.153,18.685-112.337,30.659c-35.984,14.765-59.353,32.122-71.444,53.063 C18.371,166.092,15,195.572,20.359,234.921c4.351,31.95,14.576,70.692,30.391,115.152 c28.898,81.242,75.898,179.821,132.343,277.578c54.777,94.868,114.278,181.585,167.542,244.178 c29.262,34.388,56.496,61.385,80.946,80.243c30.188,23.283,56.493,34.602,80.419,34.602 c43.389-0.002,96.263-37.118,161.645-113.471c52.812-61.674,111.866-147.554,166.283-241.82 c56.653-98.141,103.925-197.524,133.107-279.843c15.896-44.839,26.183-83.911,30.572-116.128 C1009.007,195.774,1005.645,166.136,993.326,144.804z M960.108,293.877c-20.245-11.6-49.372-6.562-61.032,13.646l0.037-0.157 c-37.762,151.969-191.77,420.057-304.607,527.805l0.087-0.067c-11.648,20.164-1.606,47.778,18.479,59.557 c-38.886,38.699-74.053,62.014-101.073,62.014c-26.674,0-62.002-23.913-101.288-63.533l0.037-0.118 c20.257-11.69,30.522-39.516,18.831-59.767l0.117,0.112C316.964,724.687,161.801,457.26,124.905,305.673l0.018,0.105 c-11.691-20.257-40.836-25.328-61.088-13.63l-0.266,0.008c-17.114-59.85-21.363-107.35-6.923-132.363 c13.597-23.549,53.3-42.63,108.922-57.229l0.179,0.779c0,23.388,18.96,46.19,42.341,46.191 c150.544-43.246,459.569-43.892,609.24-0.068l-0.098-0.031c23.395,0,42.354-22.703,42.354-46.092l0.691-0.883 c54.475,14.551,93.396,33.637,107.083,57.345C981.885,184.961,977.5,233.15,960.108,293.877z"/><path fill="url(#logo-gradient)" d="M286.54,293.853c-35.367,61.239,155.357,394.573,225.459,394.573c71.971-0.006,260.663-333.631,225.473-394.566 C701.859,232.135,321.386,233.48,286.54,293.853z"/></svg><svg id="create-user" viewBox="0 0 1024 1024"><circle fill="#FFFFFF" cx="512" cy="512" r="512"/><path fill="url(#create-gradient)" d="M0,0v1024h72.668c0,0-28-170,112-220.664c77.098-35.608,109.333-41.336,152-48c42.668-6.672,53.332-22.672,58.669-61.336c5.331-38.664,9.332-44,9.332-62.664C379.335,614,371.332,582,370,564.664c-1.333-17.328-8-36-6.664-52.665c-24,5.336-21.001-24.334-28-40.664c-2.629-6.133-16.001-44-18.669-65.335c-2.667-21.336,4.001-30.669,18.669-21.336C322,343.336,326,306,323.336,279.336c-2.667-26.671-16-93.336,33.332-106.672C374,167,385,141.999,415,132c30-9.999,61-29,97-29c36,0,67,19,97,29c30,10,41,35,58.332,40.664c49.332,13.336,36,80.001,33.332,106.672c-2.664,26.665,1.337,64-12,105.328c14.668-9.333,21.336,0,18.668,21.336c-2.667,21.335-16.039,59.202-18.668,65.335c-6.999,16.329-4,46-28,40.664c1.335,16.665-5.331,35.336-6.663,52.665C652.668,582,644.665,614,619.332,631.336c0,18.664,4,24,9.333,62.664c5.335,38.664,16,54.664,58.668,61.336c42.667,6.664,89.299,17.486,151.999,48c140,50.664,112,220.664,112,220.664H1024V0H0z"/><defs><radialGradient id="create-gradient" cx="512" cy="512" r="512" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#CFD4EF"/><stop offset="1" style="stop-color:#7F849F"/></radialGradient></defs></svg><svg id="chevron-right" viewBox="0 0 1024 1024"><polyline fill="none" stroke="#fff" stroke-width="120" stroke-linecap="round" stroke-linejoin="round" points="304.3,99.957 719.7,515.357 311.014,924.043"/></svg><svg id="check" viewBox="0 0 1024 1024"><polyline fill="none" stroke="#777" stroke-width="120" stroke-linecap="round" stroke-linejoin="round" points="148.5,475.5 396,723 861,258"/></svg><svg id="times" viewBox="0 0 1024 1024"><line stroke="#777" stroke-width="100" stroke-linecap="round" x1="178" y1="178" x2="846" y2="846"/><line stroke="#777" stroke-width="100" stroke-linecap="round" x1="846" y1="178" x2="178" y2="846"/></svg><svg id="cancel" viewBox="0 0 1024 1024"><circle fill="none" stroke="#777" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" cx="512" cy="542" r="432"/><path fill="#777" d="M547.355,542l165.072-165.072c9.763-9.763,9.763-25.592,0-35.355c-9.764-9.763-25.592-9.763-35.355,0L512,506.645 L346.928,341.572c-9.764-9.763-25.592-9.763-35.355,0c-9.763,9.763-9.763,25.592,0,35.355L476.645,542L311.572,707.072 c-9.763,9.763-9.763,25.593,0,35.355c4.882,4.882,11.28,7.322,17.678,7.322s12.796-2.44,17.678-7.322L512,577.355l165.072,165.072 c4.882,4.882,11.279,7.322,17.678,7.322s12.796-2.44,17.678-7.322c9.763-9.763,9.763-25.593,0-35.355L547.355,542z"/></svg><svg id="forgot-password" viewBox="0 0 1024 1024"><path fill="#777" d="M936.675,372.869c-5.112-12.826-19.654-19.08-32.48-13.967c-12.825,5.112-19.078,19.654-13.967,32.479 C909.319,439.28,919,489.955,919,542c0,54.956-10.758,108.254-31.974,158.415c-20.498,48.462-49.848,91.991-87.234,129.377 c-37.386,37.387-80.915,66.736-129.377,87.234C620.254,938.242,566.956,949,512,949c-54.956,0-108.254-10.758-158.415-31.974 c-48.462-20.498-91.991-49.848-129.377-87.234c-37.386-37.386-66.736-80.915-87.234-129.377C115.758,650.254,105,596.956,105,542 c0-54.956,10.758-108.254,31.974-158.415c20.498-48.462,49.848-91.991,87.234-129.377s80.915-66.736,129.377-87.234 C403.746,145.758,457.044,135,512,135c96.346,0,187.87,33.406,260.981,94.666l-43.244,27.301l146.782,51.433l-32.878-153.177 l-32.173,41.554C728.345,124.503,623.021,85,512,85c-61.684,0-121.535,12.086-177.893,35.924 c-54.422,23.019-103.293,55.966-145.255,97.928c-41.962,41.962-74.91,90.833-97.928,145.255C67.086,420.465,55,480.316,55,542 s12.086,121.535,35.924,177.893c23.019,54.422,55.966,103.293,97.928,145.255c41.962,41.962,90.833,74.91,145.255,97.929 C390.465,986.914,450.316,999,512,999s121.535-12.086,177.893-35.924c54.422-23.019,103.293-55.967,145.255-97.929 s74.91-90.833,97.929-145.255C956.914,663.535,969,603.684,969,542C969,483.586,958.124,426.683,936.675,372.869z"/><path fill="#777" d="M487.806,644.227c-0.179-6.382-0.267-11.167-0.267-14.357c0-18.785,2.659-35.003,7.977-48.653 c3.896-10.278,10.189-20.646,18.877-31.106c6.381-7.619,17.854-18.744,34.43-33.367c16.57-14.622,27.338-26.274,32.303-34.962 c4.96-8.682,7.444-18.165,7.444-28.447c0-18.61-7.27-34.961-21.802-49.053c-14.536-14.091-32.349-21.137-53.439-21.137 c-20.385,0-37.4,6.381-51.046,19.143c-13.65,12.762-22.599,32.702-26.853,59.82l-49.186-5.849 c4.428-36.333,17.59-64.161,39.481-83.482c21.888-19.317,50.822-28.979,86.806-28.979c38.106,0,68.502,10.369,91.192,31.106 c22.686,20.737,34.031,45.82,34.031,75.24c0,17.016-3.988,32.702-11.964,47.059c-7.977,14.357-23.576,31.817-46.793,52.376 c-15.6,13.825-25.789,24.02-30.575,30.575c-4.786,6.56-8.333,14.091-10.634,22.598c-2.307,8.509-3.637,22.334-3.988,41.477H487.806 z M483.881,741.204v-56.503h56.503v56.503H483.881z"/></svg><svg id="sleep" viewBox="0 0 1024 1024"><path fill="#777" d="M933.076,364.107c-23.019-54.422-55.967-103.293-97.929-145.255s-90.833-74.91-145.255-97.929 C633.535,97.086,573.684,85,512,85s-121.536,12.086-177.893,35.923c-54.422,23.019-103.293,55.967-145.255,97.929 s-74.91,90.833-97.929,145.255C67.086,420.464,55,480.316,55,542s12.086,121.535,35.923,177.893 c23.019,54.422,55.967,103.293,97.929,145.255s90.833,74.91,145.255,97.929C390.464,986.913,450.316,999,512,999 s121.535-12.087,177.893-35.924c54.422-23.019,103.293-55.967,145.255-97.929s74.91-90.833,97.929-145.255 C956.913,663.535,969,603.684,969,542S956.913,420.464,933.076,364.107z M670.415,917.026C620.254,938.242,566.955,949,512,949 c-54.956,0-108.254-10.758-158.416-31.974c-48.462-20.498-91.991-49.848-129.377-87.234c-3.481-3.48-6.869-7.032-10.209-10.619 h596.004c-3.342,3.587-6.729,7.139-10.21,10.619C762.406,867.179,718.877,896.528,670.415,917.026z M887.026,700.415 c-10.235,24.2-22.68,47.169-37.229,68.758H174.202c-14.549-21.589-26.993-44.558-37.229-68.758C115.757,650.254,105,596.955,105,542 c0-54.956,10.757-108.254,31.974-158.416c20.498-48.462,49.847-91.991,87.233-129.377s80.915-66.735,129.377-87.233 C403.746,145.757,457.044,135,512,135c54.955,0,108.254,10.757,158.415,31.974c48.462,20.498,91.991,49.848,129.377,87.234 c37.387,37.386,66.736,80.915,87.234,129.377C908.242,433.746,919,487.044,919,542C919,596.955,908.242,650.254,887.026,700.415z"/></svg><svg id="restart" viewBox="0 0 1024 1024"><circle fill="none" stroke="#777" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" cx="512" cy="542" r="432"/><polygon fill="none" stroke="#777" stroke-width="50" stroke-linejoin="round" points="618.965,737.34 293.732,542 618.965,346.66"/></svg><svg id="shutdown" viewBox="0 0 1024 1024"><path fill="none" stroke="#777" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" d="M655.764,134.499C823.675,193.736,944,353.815,944,542c0,238.586-193.414,432-432,432C273.412,974,80,780.586,80,542 c0-188.184,120.324-348.263,288.233-407.501"/><line fill="none" stroke="#777" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" x1="512" y1="512" x2="512" y2="34.5"/></svg><svg id="login-svg-loading" viewBox="0 0 50 50" cache="false"><style>.svg-loading-group {animation: svg-loading 3s linear infinite;transform-origin: 50% 50%;}.svg-loading-path {stroke-width: 5px;stroke: transparent;fill: transparent;}.svg-loading-inner {stroke-dashoffset: 100;stroke-dasharray: 100;stroke-width: 5px;stroke-linecap: round;stroke: #bbb;animation: svg-loading-circle 3s linear infinite;fill: transparent;}@keyframes svg-loading {0%   { transform: rotate( 0deg ); }100% { transform: rotate( 360deg ); }}@keyframes svg-loading-circle {0%   { stroke-dashoffset: 200; }100% { stroke-dashoffset: -200; }}</style><g class="svg-loading-group"><circle class="svg-loading-path" cx="25" cy="25" r="20"/><circle class="svg-loading-inner" cx="25" cy="25" r="20"/></g></svg></svg> ]]></WindowIcons></Application>
+	</applications>
+	<dfs/>
+
+	<Spotlight>
+		<i name="Applications" singular="Application"/>
+		<i name="Music" singular="Music"/>
+		<i name="Definitions" singular="Definition"/>
+		<i name="Files" singular="File"/>
+	</Spotlight>
+
+	<svg width="0" height="0">
+		
+<svg id="icon-def-ant" viewBox="0 0 1024 1024">
+	<path fill="#333" stroke="#333" stroke-width="5px" d="M951.247,176.908c-19.903-34.478-74.194-59.546-165.977-76.635c-74.28-13.83-170.4-21.446-270.655-21.446 c-101.064,0-198.428,7.695-274.152,21.669c-41.392,7.639-75.883,17.051-102.516,27.979c-32.838,13.475-54.163,29.313-65.197,48.424 c-11.219,19.436-14.295,46.339-9.404,82.247c3.971,29.157,13.301,64.512,27.733,105.085 c26.372,74.139,69.263,164.099,120.772,253.31c49.988,86.573,104.287,165.709,152.895,222.83 c26.703,31.381,51.557,56.018,73.869,73.228c27.548,21.247,51.554,31.576,73.388,31.576c39.595-0.002,87.847-33.873,147.512-103.55 c48.195-56.282,102.086-134.654,151.746-220.679c51.7-89.561,94.839-180.254,121.47-255.377 c14.506-40.918,23.894-76.574,27.899-105.975C965.557,223.422,962.488,196.374,951.247,176.908z M920.933,312.947 c-18.474-10.586-45.055-5.988-55.695,12.453l0.034-0.143c-34.461,138.682-175.004,383.331-277.977,481.659l0.08-0.062 c-10.63,18.4-1.466,43.601,16.863,54.351c-35.486,35.315-67.579,56.592-92.236,56.592c-24.342,0-56.581-21.822-92.433-57.979 l0.034-0.107c18.485-10.668,27.853-36.062,17.185-54.542l0.106,0.103c-102.876-99.18-244.474-343.227-278.144-481.561l0.017,0.096 c-10.669-18.485-37.266-23.113-55.747-12.438l-0.243,0.008C87.16,256.76,83.282,213.412,96.46,190.586 c12.408-21.49,48.64-38.902,99.399-52.226l0.163,0.711c0,21.343,17.302,42.151,38.639,42.153 c137.382-39.466,419.39-40.055,555.976-0.062l-0.089-0.028c21.349,0,38.65-20.718,38.65-42.062l0.631-0.806 c49.712,13.278,85.23,30.696,97.72,52.332C940.807,213.554,936.805,257.529,920.933,312.947z"/>
+	<path fill="#333" stroke="#333" stroke-width="5px" d="M306.254,312.926c-32.274,55.885,141.774,360.075,205.748,360.075c65.679-0.005,237.874-304.462,205.76-360.069 C685.263,256.604,338.054,257.83,306.254,312.926z"/>
+</svg>
+
+<svg id="toolbar-input-clear" viewBox="0 0 1024 1024">
+	<path fill="#333" d="M877.443 255.518l-108.963-108.963-256.48 256.482-256.482-256.482-108.963 108.963 256.482 256.482-256.482 256.48 108.963 108.963 256.482-256.48 256.48 256.48 108.963-108.963-256.48-256.48z"/>
+</svg>
+
+<svg id="window-close" viewBox="0 0 1024 1024">
+	<path fill="#333" d="M877.443 255.518l-108.963-108.963-256.48 256.482-256.482-256.482-108.963 108.963 256.482 256.482-256.482 256.48 108.963 108.963 256.482-256.48 256.48 256.48 108.963-108.963-256.48-256.48z"/>
+</svg>
+
+<svg id="window-minimize" viewBox="0 0 1024 1024">
+	<path fill="#333" d="M91.365 438.304h841.268v147.392h-841.268v-147.392z"/>
+</svg>
+
+<svg id="window-maximize" viewBox="0 0 1024 1024">
+	<path fill="#333" d="M849.025 636.28v-461.305h-461.305z"/>
+	<path fill="#333" d="M174.975 387.72v461.305h461.305z"/>
+</svg>
+
+<svg id="window-restore" viewBox="0 0 1024 1024">
+	<path fill="#333" d="M512 973.305v-461.307h-461.305z"/>
+	<path fill="#333" d="M512 50.695v461.302h461.307z"/>
+</svg>
+
+<svg id="icon-magnify" viewBox="0 0 1024 1024">
+	<path fill="#333" d="M687.523 441.791c0-135.481-110.25-245.734-245.731-245.734s-245.736 110.25-245.736 245.734 110.252 245.731 245.734 245.731 245.734-110.25 245.734-245.731zM968.362 898.153c0 38.394-31.815 70.209-70.209 70.209-18.65 0-36.751-7.679-49.365-20.843l-188.14-187.592c-64.175 44.429-140.967 68.016-218.855 68.016-213.371 0-386.153-172.782-386.153-386.153s172.78-386.151 386.151-386.151 386.153 172.782 386.153 386.153c0 77.887-23.586 154.679-68.016 218.855l188.14 188.14c12.612 12.617 20.293 30.715 20.293 49.368z"/>
+</svg>
+
+<svg id="icon-spotlight" viewBox="0 0 512 512">
+	<path fill="#333" d="M507.44 463.248c6.096 6.096 6.096 15.984 0 22.096l-22.096 22.096c-6.112 6.096-16 6.096-22.096 0l-154.688-154.688c-1.68-1.68-2.8-3.664-3.552-5.776-31.728 23.184-70.688 37.024-113.008 37.024-106.032 0-192-85.968-192-192s85.968-192 192-192c106.032 0 192 85.968 192 192 0 42.32-13.84 81.28-37.024 113.008 2.112 0.752 4.096 1.856 5.776 3.552l154.688 154.688zM192 64c-70.688 0-128 57.312-128 128s57.312 128 128 128 128-57.312 128-128c0-70.688-57.312-128-128-128z"/>
+</svg>
+
+<svg id="icon-chevron-down" viewBox="0 0 1024 1024">
+	<path fill="#333" d="M978.511 367.46l-439.767 439.174c-14.817 14.817-38.524 14.817-53.341 0l-439.767-439.174c-14.817-14.817-14.817-39.117 0-53.934l98.384-97.792c14.817-14.817 38.524-14.817 53.341 0l314.712 314.712 314.712-314.712c14.817-14.817 38.524-14.817 53.341 0l98.384 97.792c14.817 14.817 14.817 39.117 0 53.934z"/>
+</svg>
+
+<svg id="icon-plus" viewBox="0 0 500 500">
+	<line fill="#333" stroke="#333" stroke-width="20" x1="390" y1="250" x2="110" y2="250"/>
+	<line fill="#333" stroke="#333" stroke-width="20" x1="250" y1="390" x2="250" y2="110"/>
+</svg>
+
+<svg id="icon-chevron-sort" viewBox="0 0 1024 1024">
+	<path fill="#333" d="M749.749,688.586L525.634,912.399c-7.552,7.551-19.633,7.551-27.184,0L274.334,688.586c-7.551-7.552-7.551-19.936,0-27.486 l50.139-49.837c7.552-7.552,19.633-7.552,27.184,0l160.386,160.385l160.384-160.385c7.551-7.552,19.633-7.552,27.184,0 l50.139,49.837C757.3,668.65,757.3,681.034,749.749,688.586L749.749,688.586z"/>
+	<path fill="#333" d="M274.25,335.413L498.365,111.6c7.552-7.55,19.634-7.55,27.185,0l224.114,223.813c7.552,7.552,7.552,19.936,0,27.486 l-50.138,49.837c-7.552,7.552-19.634,7.552-27.184,0L511.957,252.351L351.573,412.736c-7.55,7.552-19.632,7.552-27.185,0 l-50.137-49.837c-7.553-7.551-7.553-19.935,0-27.486H274.25z"/>
+</svg>
+
+<svg id="icon-arrow-left" viewBox="0 0 1024 1024">
+	<path fill="#555" d="M46.236,491.33L833.312,53.934c18.372-10.076,33.189-1.185,33.189,19.558v872.422c0,20.744-14.817,29.634-33.189,19.558 L46.236,528.076C27.863,518,27.863,501.406,46.236,491.33L46.236,491.33z"/>
+</svg>
+
+<svg id="icon-arrow-right" viewBox="0 0 1024 1024">
+	<path fill="#555" d="M912.724 528.076l-787.076 437.396c-18.373 10.076-33.19 1.185-33.19-19.558v-872.422c0-20.744 14.817-29.634 33.19-19.558l787.076 437.396c18.373 10.076 18.373 26.67 0 36.746z"/>
+</svg>
+
+<svg id="icon-check" viewBox="0 0 1024 1024">
+	<path fill="#333" d="M969.028 295.153c0 14.817-5.927 29.634-16.595 40.302l-509.703 509.703c-10.668 10.668-25.485 16.595-40.302 16.595s-29.634-5.927-40.302-16.595l-295.153-295.153c-10.668-10.668-16.595-25.485-16.595-40.302s5.927-29.634 16.595-40.302l80.604-80.604c10.668-10.668 25.485-16.595 40.302-16.595s29.634 5.927 40.302 16.595l174.247 174.84 388.797-389.389c10.668-10.668 25.485-16.595 40.302-16.595s29.634 5.927 40.302 16.595l80.604 80.604c10.668 10.668 16.595 25.485 16.595 40.302z"/>
+</svg>
+
+<svg id="negative-border" viewBox="0 0 50 50">
+	<path fill="#afafaf" d="M50,0H0v50C0,22.386,22.386,0,50,0z"/>
+</svg>
+
+<svg id="icon-power" viewBox="0 0 100 100">
+	<path fill="#333" d="M50,54.9c-2.805,0-5.078-2.274-5.078-5.078V12.545c0-2.803,2.273-5.076,5.078-5.076c2.803,0,5.078,2.273,5.078,5.076v37.277 C55.078,52.626,52.803,54.9,50,54.9z"/>
+	<path fill="#333" d="M50,96.532c-23.091,0-41.876-18.785-41.876-41.876c0-14.16,7.076-27.257,18.929-35.034c2.309-1.517,5.408-0.87,6.924,1.438 c1.515,2.31,0.871,5.409-1.438,6.924c-9.026,5.923-14.415,15.894-14.415,26.673c0,17.576,14.3,31.876,31.876,31.876 s31.875-14.3,31.875-31.876c0-10.78-5.39-20.752-14.417-26.674c-2.309-1.516-2.952-4.615-1.438-6.924 c1.514-2.309,4.612-2.955,6.924-1.438c11.854,7.777,18.931,20.874,18.931,35.035C91.875,77.747,73.09,96.532,50,96.532z"/>
+</svg>
+
+<svg id="icon-volume" viewBox="0 0 1024 1024" cache="false">
+	<path fill="var(--vol3)" d="M808.432,894.886c-11.711,0-23.416-4.468-32.353-13.396c-17.868-17.871-17.868-46.84,0-64.71 c83.537-83.542,129.548-194.609,129.548-312.752c0-118.14-46.011-229.21-129.548-312.752c-17.868-17.869-17.868-46.84,0-64.708 c17.867-17.866,46.84-17.866,64.706,0c100.822,100.825,156.351,234.876,156.351,377.459s-55.528,276.635-156.351,377.458 C831.851,890.418,820.144,894.886,808.432,894.886L808.432,894.886z"/>
+	<path fill="var(--vol2)" d="M645.896,808.609c-11.71,0-23.414-4.469-32.353-13.401c-17.867-17.868-17.867-46.837,0-64.706 c124.878-124.88,124.878-328.072,0-452.951c-17.867-17.87-17.867-46.839,0-64.706c17.868-17.865,46.841-17.867,64.709,0 c77.775,77.773,120.61,181.184,120.61,291.178c0,109.994-42.835,213.405-120.61,291.181 C669.317,804.141,657.608,808.609,645.896,808.609L645.896,808.609L645.896,808.609z"/>
+	<path fill="var(--vol1)" d="M483.363,722.332c-11.71,0-23.419-4.468-32.354-13.401c-17.869-17.868-17.869-46.833,0-64.703 c77.305-77.307,77.305-203.093,0-280.397c-17.869-17.869-17.869-46.839,0-64.707c17.87-17.867,46.838-17.867,64.708,0 c112.986,112.986,112.986,296.827,0,409.812C506.783,717.864,495.074,722.332,483.363,722.332z"/>
+	<path fill="var(--color-1)" d="M341.249,815.134c-6.284,0-12.459-2.454-17.079-7.074L185.008,648.897h-123.5c-13.334,0-24.145-10.81-24.145-24.145V383.304 c0-13.333,10.81-24.144,24.145-24.144h123.5L324.17,199.995c6.908-6.907,17.292-8.972,26.314-5.234 c9.022,3.739,14.906,12.542,14.906,22.307v573.922c0,9.767-5.883,18.569-14.906,22.308 C347.498,814.532,344.358,815.134,341.249,815.134z"/>
+</svg>
+
+<svg id="icon-clock" viewBox="0 0 96 96" cache="false">
+	<circle fill="none" stroke="var(--color-1)" stroke-width="6" cx="48" cy="48" r="43.302"/>
+	<line style="transform-origin: 50% 50%; transform: rotate(var(--rotation-hour));" stroke="var(--color-1)" stroke-width="7" stroke-linecap="round" x1="48" y1="31" x2="48" y2="48"/>
+	<line style="transform-origin: 50% 50%; transform: rotate(var(--rotation-minutes));" stroke="var(--color-1)" stroke-width="7" stroke-linecap="round" x1="48" y1="23" x2="48" y2="48"/>
+</svg>
+
+<svg id="icon-color-preset" viewBox="0 0 390 390">
+	<circle fill="#fff" stroke="rgba(0,0,0,0.5)" stroke-width="20" cx="195" cy="195" r="177"/>
+	<circle fill="url(#CLRPRS_1)" cx="195" cy="195" r="177"/>
+	<circle fill="url(#CLRPRS_2)" cx="195" cy="195" r="177"/>
+	<circle fill="url(#CLRPRS_3)" cx="195" cy="195" r="177"/>
+	<circle fill="url(#CLRPRS_4)" cx="195" cy="195" r="177"/>
+	<circle fill="url(#CLRPRS_5)" cx="195" cy="195" r="177"/>
+	<circle fill="url(#CLRPRS_6)" cx="195" cy="195" r="177"/>
+	<defs>
+		<linearGradient id="CLRPRS_1" gradientUnits="userSpaceOnUse" x1="195.5005" y1="194.1343" x2="283.8001" y2="41.1949">
+			<stop offset="0" style="stop-color:#fff;stop-opacity:0"/>
+			<stop offset="1" style="stop-color:#f00;stop-opacity:0.7"/>
+		</linearGradient>
+		<linearGradient id="CLRPRS_2" gradientUnits="userSpaceOnUse" x1="196" y1="195" x2="372.5701" y2="195">
+			<stop offset="0" style="stop-color:#fff;stop-opacity:0"/>
+			<stop offset="1" style="stop-color:#00f;stop-opacity:0.7"/>
+		</linearGradient>
+		<linearGradient id="CLRPRS_3" gradientUnits="userSpaceOnUse" x1="195.5" y1="195.8667" x2="283.7997" y2="348.8062">
+			<stop offset="0" style="stop-color:#fff;stop-opacity:0"/>
+			<stop offset="1" style="stop-color:#00AEEF;stop-opacity:0.7"/>
+		</linearGradient>
+		<linearGradient id="CLRPRS_4" gradientUnits="userSpaceOnUse" x1="194.4995" y1="195.8662" x2="106.1998" y2="348.8057">
+			<stop offset="0" style="stop-color:#fff;stop-opacity:0"/>
+			<stop offset="1" style="stop-color:#0f0;stop-opacity:0.7"/>
+		</linearGradient>
+		<linearGradient id="CLRPRS_5" gradientUnits="userSpaceOnUse" x1="194.0005" y1="194.9995" x2="17.4301" y2="194.9995">
+			<stop offset="0" style="stop-color:#fff;stop-opacity:0"/>
+			<stop offset="1" style="stop-color:#ff0;stop-opacity:0.7"/>
+		</linearGradient>
+		<linearGradient id="CLRPRS_6" gradientUnits="userSpaceOnUse" x1="194.5" y1="194.1348" x2="106.2003" y2="41.1953">
+			<stop offset="0" style="stop-color:#fff;stop-opacity:0"/>
+			<stop offset="1" style="stop-color:#f0f;stop-opacity:0.7"/>
+		</linearGradient>
+	</defs>
+</svg>
+
+<svg id="tiny-generic-document" viewBox="0 0 1024 1024">
+	<path fill="url(#GNRDOC_1_)" d="M446.979,77.721c-180.338,0-266.822,0-266.822,0v868.559h663.685c0,0,0-230.637,0-471.083 c0-130.041-60.256-161.868-160.457-259.156C589.555,124.939,558.003,77.721,446.979,77.721z"/>
+	<path fill="url(#GNRDOC_2_)" stroke="#333" stroke-width="10" d="M446.979,77.721 c-180.338,0-266.822,0-266.822,0v868.559h663.685c0,0,0-230.637,0-471.083c0-130.041-60.256-161.868-160.457-259.156 C589.555,124.939,558.003,77.721,446.979,77.721z"/>
+	<path fill="url(#GNRDOC_3_)" stroke="#333" d="M572.923,113.626 c35.687,36.473,35.685,92.599,31.08,167.736c72.379-12.267,150.595,4.911,188.456,41.073 c-18.079-25.355-64.167-62.941-111.064-108.33C635.918,170.088,596.568,127.787,572.923,113.626z"/>
+	<defs>
+		<linearGradient id="GNRDOC_1_" gradientUnits="userSpaceOnUse" x1="272.8564" y1="450.9858" x2="272.8564" y2="919.9399" gradientTransform="matrix(1.8521 0 0 -1.8521 6.6368 1781.5574)">
+			<stop offset="0.9126" style="stop-color:#FFFFFF"/>
+			<stop offset="1" style="stop-color:#E6E7E8"/>
+		</linearGradient>
+		<linearGradient id="GNRDOC_2_" gradientUnits="userSpaceOnUse" x1="66.0332" y1="478.6387" x2="400.2654" y2="812.8709" gradientTransform="matrix(1.8521 0 0 -1.8521 6.6368 1781.5574)">
+			<stop offset="0.7686" style="stop-color:#FFFFFF;stop-opacity:0.1"/>
+			<stop offset="0.942" style="stop-color:#D8DADB;stop-opacity:0.8"/>
+			<stop offset="1" style="stop-color:#A7A9AC;stop-opacity:0.9"/>
+		</linearGradient>
+		<linearGradient id="GNRDOC_3_" gradientUnits="userSpaceOnUse" x1="326.6772" y1="805.8438" x2="367.2489" y2="846.4154" gradientTransform="matrix(1.8521 0 0 -1.8521 6.6368 1781.5574)">
+			<stop offset="0.3821" style="stop-color:#FFFFFF"/>
+			<stop offset="0.728" style="stop-color:#F2F2F3"/>
+			<stop offset="1" style="stop-color:#D1D3D4"/>
+		</linearGradient>
+	</defs>
+</svg>
+
+<svg id="tiny-generic-folder" viewBox="0 0 1024 1024">
+	<path fill="#97DAF8" stroke="#3829CC" stroke-width="6" d="M73.651,207.246 c0-22.44,18.189-40.634,40.635-40.634c0,0,141.598,0,199.47,0c73.882,0,54.18,66.492,116.979,66.492c93.58,0,478.982,0,478.982,0 c22.443,0,40.633,18.189,40.633,40.633v475.296c0,22.44-18.189,40.633-40.633,40.633H114.286c-22.445,0-40.635-18.192-40.635-40.633 V207.246z"/>
+	<path fill="#6FC7F1" stroke="#3829CC" stroke-width="6" d="M73.648,315.604 c0-22.443,18.192-40.633,40.634-40.633h795.437c22.445,0,40.633,18.189,40.633,40.633v501.15c0,22.441-18.188,40.633-40.633,40.633 H114.282c-22.441,0-40.634-18.191-40.634-40.633V315.604z"/>
+</svg>
+
+<svg id="generic-folder" viewBox="0 0 500 500">
+	<path fill="#97DAF8" filter="url(#dropshadow)" d="M23.385,92.45c0-11.601,9.402-21.007,21.006-21.007c0,0,73.203,0,103.121,0 c38.195,0,28.01,34.375,60.477,34.375c48.378,0,247.622,0,247.622,0c11.604,0,21.007,9.404,21.007,21.007v280.726 c0,11.602-9.402,21.007-21.007,21.007H44.391c-11.604,0-21.006-9.405-21.006-21.007V92.45z"/>
+	<path fill="#6FC7F1" d="M23.383,148.469c0-11.603,9.404-21.006,21.006-21.006h411.223c11.604,0,21.007,9.403,21.007,21.006v259.082 c0,11.604-9.402,21.007-21.007,21.007H44.389c-11.602,0-21.006-9.403-21.006-21.007V148.469z"/>
+	<rect x="23.385" y="391.002" opacity="0.4" fill="url(#GFGID_1_)" width="453.233" height="12.732"/>
+	<path opacity="0.4" fill="url(#GFGID_2_)" d="M23.385,407.571c0.002,3.184,0.733,6.19,2.002,8.895 h449.225c1.271-2.709,2.006-5.722,2.006-8.915v-3.817H23.385V407.571z"/>
+	<path opacity="0.4" fill="url(#GFGID_3_)" d="M44.389,428.558h411.223 c8.414,0,15.647-4.954,19.002-12.092H25.387C28.744,423.604,35.979,428.558,44.389,428.558z"/>
+	<defs>
+		<linearGradient id="GFGID_1_" gradientUnits="userSpaceOnUse" x1="352.1309" y1="813.541" x2="352.1309" y2="826.5791" gradientTransform="matrix(0.9766 0 0 0.9766 -93.875 -403.4707)">
+			<stop offset="0" style="stop-color:#FFFFFF;stop-opacity:0.5"/>
+			<stop offset="0.092" style="stop-color:#E0E1E2;stop-opacity:0.3"/>
+			<stop offset="0.9102" style="stop-color:#4054A4;stop-opacity:0.3"/>
+			<stop offset="1" style="stop-color:#384EA2;stop-opacity:0.5"/>
+		</linearGradient>
+		<linearGradient id="GFGID_2_" gradientUnits="userSpaceOnUse" x1="352.1299" y1="826.5781" x2="352.1299" y2="839.6162" gradientTransform="matrix(0.9766 0 0 0.9766 -93.875 -403.4707)">
+			<stop offset="0" style="stop-color:#FFFFFF;stop-opacity:0.5"/>
+			<stop offset="0.092" style="stop-color:#E0E1E2;stop-opacity:0.3"/>
+			<stop offset="0.9102" style="stop-color:#4054A4;stop-opacity:0.3"/>
+			<stop offset="1" style="stop-color:#384EA2;stop-opacity:0.5"/>
+		</linearGradient>
+		<linearGradient id="GFGID_3_" gradientUnits="userSpaceOnUse" x1="352.1289" y1="839.6162" x2="352.1289" y2="851.998" gradientTransform="matrix(0.9766 0 0 0.9766 -93.875 -403.4707)">
+			<stop offset="0" style="stop-color:#FFFFFF;stop-opacity:0.5"/>
+			<stop offset="0.092" style="stop-color:#E0E1E2;stop-opacity:0.3"/>
+			<stop offset="0.9102" style="stop-color:#4054A4;stop-opacity:0.3"/>
+			<stop offset="1" style="stop-color:#384EA2;stop-opacity:0.5"/>
+		</linearGradient>
+		<filter id="dropshadow" height="130%">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="4"/> 
+			<feOffset dx="0" dy="4" result="offsetblur"/>
+			<feComponentTransfer>
+				<feFuncA type="linear" slope="0.3"/>
+			</feComponentTransfer>
+			<feMerge> 
+				<feMergeNode/>
+				<feMergeNode in="SourceGraphic"/> 
+			</feMerge>
+		</filter>
+	</defs>
+</svg>
+
+<svg id="generic-document" viewBox="0 0 500 500">
+	<path filter="url(#dropshadow)" fill="url(#GDGID_1_)" d="M219.286,44.869c-85.182,0-126.031,0-126.031,0v410.262h313.49c0,0,0-108.94,0-222.515 c0-61.425-28.462-76.458-75.791-122.413C286.633,67.172,271.729,44.869,219.286,44.869z"/>
+	<path fill="none" stroke="#BCBEC0" stroke-width="0.5739" stroke-miterlimit="10" d="M219.286,44.869 c-85.182,0-126.031,0-126.031,0v410.262h313.49c0,0,0-108.94,0-222.515c0-61.425-28.462-76.458-75.791-122.413 C286.633,67.172,271.729,44.869,219.286,44.869z"/>
+	<path fill="url(#GDGID_2_)" stroke="#BCBEC0" stroke-width="0.5739" stroke-miterlimit="10" d="M219.286,44.869 c-85.182,0-126.031,0-126.031,0v410.262h313.49c0,0,0-108.94,0-222.515c0-61.425-28.462-76.458-75.791-122.413 C286.633,67.172,271.729,44.869,219.286,44.869z"/>
+	<path fill="url(#GDGID_3_)" d="M278.776,61.829c16.856,17.228,16.856,43.739,14.681,79.229c34.188-5.793,71.133,2.319,89.017,19.4 c-8.54-11.976-30.308-29.73-52.461-51.169C308.531,88.498,289.945,68.518,278.776,61.829z"/>
+	<path fill="none" stroke="#D1D3D4" stroke-width="1.1477" stroke-miterlimit="10" d="M278.776,61.829 c16.856,17.228,16.856,43.739,14.681,79.229c34.188-5.793,71.133,2.319,89.017,19.4c-8.54-11.976-30.308-29.73-52.461-51.169 C308.531,88.498,289.945,68.518,278.776,61.829z"/>
+	<defs>
+		<linearGradient id="GDGID_1_" gradientUnits="userSpaceOnUse" x1="297.5" y1="-125.1304" x2="297.5" y2="285.1313" gradientTransform="matrix(1 0 0 -1 -47.5 330)">
+			<stop offset="0.9126" style="stop-color:#FFFFFF"/>
+			<stop offset="1" style="stop-color:#E6E7E8"/>
+		</linearGradient>
+		<linearGradient id="GDGID_2_" gradientUnits="userSpaceOnUse" x1="116.563" y1="-100.937" x2="408.9648" y2="191.4648" gradientTransform="matrix(1 0 0 -1 -47.5 330)">
+			<stop offset="0.7686" style="stop-color:#FFFFFF;stop-opacity:0.1"/>
+			<stop offset="0.942" style="stop-color:#D8DADB;stop-opacity:0.8"/>
+			<stop offset="1" style="stop-color:#A7A9AC;stop-opacity:0.9"/>
+		</linearGradient>
+		<linearGradient id="GDGID_3_" gradientUnits="userSpaceOnUse" x1="344.585" y1="185.3145" x2="380.0791" y2="220.8086" gradientTransform="matrix(1 0 0 -1 -47.5 330)">
+			<stop offset="0.3821" style="stop-color:#FFFFFF"/>
+			<stop offset="0.728" style="stop-color:#F2F2F3"/>
+			<stop offset="1" style="stop-color:#D1D3D4"/>
+		</linearGradient>
+		<filter id="dropshadow" height="130%">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="4"/> 
+			<feOffset dx="0" dy="4" result="offsetblur"/>
+			<feComponentTransfer>
+				<feFuncA type="linear" slope="0.3"/>
+			</feComponentTransfer>
+			<feMerge> 
+				<feMergeNode/>
+				<feMergeNode in="SourceGraphic"/> 
+			</feMerge>
+		</filter>
+	</defs>
+</svg>
+
+<svg id="trashcan" viewBox="0 0 500 500">
+	<defs>
+		<filter width="131.0%" height="124.1%" id="trash-filter-3" filterUnits="objectBoundingBox" y="-9.8%" x="-15.5%">
+			<feOffset result="shadowOffsetOuter1" in="SourceAlpha" dy="10" dx="0"/>
+			<feGaussianBlur stdDeviation="16" result="shadowBlurOuter1" in="shadowOffsetOuter1"/>
+			<feColorMatrix type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.178611866 0" in="shadowBlurOuter1"/>
+		</filter>
+		<linearGradient id="Oval-37_1_" gradientUnits="userSpaceOnUse" x1="-29.1426" y1="476.7764" x2="-28.2897" y2="476.7764" gradientTransform="matrix(338.0003 0 0 -80.4458 9927.0098 38406.3828)">
+			<stop offset="0" style="stop-color:#B0B6B8"/>
+			<stop offset="0.6746" style="stop-color:#CDD3D3"/>
+			<stop offset="1" style="stop-color:#A8AEB0"/>
+		</linearGradient>
+		<linearGradient id="trash-path-2_2_" gradientUnits="userSpaceOnUse" x1="-29.146" y1="478.5928" x2="-28.2927" y2="478.5928" gradientTransform="matrix(342.0837 0 0 -439.3672 10045.2207 210507.0938)">
+			<stop offset="0" style="stop-color:#F2F3F4"/>
+			<stop offset="0.6746" style="stop-color:#ECECEC"/>
+			<stop offset="1" style="stop-color:#FFFFFF"/>
+		</linearGradient>
+	</defs>
+	<g transform="translate(30.000000, 21.000000)">
+		<path opacity="0.9701" filter="url(#trash-filter-3)" d="M219.827,9.344C127.704,10.92,87.353,22.28,65.645,32.593 C43.909,42.919,49.642,57.97,49.642,57.97s39.438,306.861,45.21,334.348c5.772,27.494,30.655,39.492,30.655,39.492 c29.091,15.256,89.223,16.734,94.32,16.833v0.041c0,0,64.273-0.957,94.666-16.896c0,0,24.883-11.998,30.655-39.492 c5.772-27.486,45.21-334.348,45.21-334.348s5.732-15.051-16.003-25.377C352.62,22.246,312.194,10.87,219.827,9.316V9.344z"/>
+		<path opacity="0.9701" id="trash-path-2_1_" fill="url(#trash-path-2_2_)" d="M219.827,9.344C127.704,10.92,87.353,22.28,65.645,32.593 C43.909,42.919,49.642,57.97,49.642,57.97s39.438,306.861,45.21,334.348c5.772,27.494,30.655,39.492,30.655,39.492 c29.091,15.256,89.223,16.734,94.32,16.833v0.041c0,0,64.273-0.957,94.666-16.896c0,0,24.883-11.998,30.655-39.492 c5.772-27.486,45.21-334.348,45.21-334.348s5.732-15.051-16.003-25.377C352.62,22.246,312.194,10.87,219.827,9.316V9.344z"/>
+		<ellipse id="Oval-37" opacity="0.2358" fill="url(#Oval-37_1_)" cx="220.396" cy="51.743" rx="169" ry="40.223"/>
+	</g>
+</svg>
+
+<svg id="default-app" viewBox="0 0 500 500">
+	<g filter="url(#defapp-filter-1)">
+		<path fill="url(#defapp_1_)" stroke="url(#defapp_2_)" stroke-width="19.1304" stroke-miterlimit="10" d="M470,420 c0,24.302-19.7,44-44,44H74c-24.301,0-44-19.698-44-44V68c0-24.299,19.699-44,44-44h352c24.3,0,44,19.701,44,44V420z"/>
+	</g>
+	<g filter="url(#defapp-filter-2)">
+		<g fill="#e9e9e9" filter="url(#defapp-inset-shadow-2)">
+			<path filter="url(#defapp-inset-shadow-1)" d="M394.792,282.16h-54.833l-59.752-103.674c-14.602,9.015-22.181,41.812-12.492,58.678l82.013,142.304 c5.532,9.601,17.801,12.896,27.403,7.363c9.597-5.531,12.896-17.803,7.361-27.401l-21.405-37.143h31.705 c11.082,0,20.063-8.984,20.063-20.064C414.855,291.144,405.874,282.16,394.792,282.16z"/>
+			<path filter="url(#defapp-inset-shadow-1)" d="M270.064,282.16h-63.821l88.983-153.318c5.561-9.581,2.3-21.862-7.28-27.422 c-9.586-5.565-21.867-2.3-27.427,7.281l-10.302,17.751l-10.326-17.918c-5.531-9.599-17.802-12.896-27.401-7.365 c-9.603,5.533-12.898,17.804-7.365,27.403l21.856,37.917L159.849,282.16h-54.64c-11.08,0-20.063,8.983-20.063,20.062 c0,11.08,8.983,20.064,20.063,20.064h186.256C302.833,310.917,291.132,283.497,270.064,282.16z"/>
+			<path filter="url(#defapp-inset-shadow-1)" d="M129.271,334.846l-14.111,24.312c-5.561,9.585-2.3,21.862,7.283,27.427 c9.583,5.559,21.863,2.301,27.425-7.284l19.139-32.978C161.052,329.645,135.612,331.354,129.271,334.846z"/>
+		</g>
+	</g>
+	<defs>
+		<linearGradient id="defapp_1_" gradientUnits="userSpaceOnUse" x1="250" y1="24" x2="250" y2="464.0005">
+			<stop offset="0" style="stop-color:#2AC8FA"/>
+			<stop offset="1" style="stop-color:#1F66EB"/>
+		</linearGradient>
+		<linearGradient id="defapp_2_" gradientUnits="userSpaceOnUse" x1="250" y1="14.4346" x2="250" y2="473.5659">
+			<stop offset="0" style="stop-color:#eee"/>
+			<stop offset="1" style="stop-color:#bbb"/>
+		</linearGradient>
+		<filter filterUnits="objectBoundingBox" id="defapp-filter-1">
+			<feOffset dx="0" dy="5" in="SourceAlpha" result="defappShadowOffsetOuter1"></feOffset>
+			<feGaussianBlur stdDeviation="5" in="defappShadowOffsetOuter1" result="defappShadowBlurOuter1"></feGaussianBlur>
+			<feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="defappShadowBlurOuter1" result="defappShadowMatrixOuter1"></feColorMatrix>
+			<feMerge>
+				<feMergeNode in="defappShadowMatrixOuter1"/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
+		<filter filterUnits="objectBoundingBox" id="defapp-filter-2">
+			<feOffset dx="0" dy="4" in="SourceAlpha" result="defappShadowOffsetOuter2"></feOffset>
+			<feGaussianBlur stdDeviation="4" in="defappShadowOffsetOuter2" result="defappShadowBlurOuter2"></feGaussianBlur>
+			<feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="defappShadowBlurOuter2" result="defappShadowMatrixOuter2"></feColorMatrix>
+			<feMerge>
+				<feMergeNode in="defappShadowMatrixOuter2"/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
+		<filter id="defapp-inset-shadow-1">
+			<feComponentTransfer in="SourceAlpha">
+				<feFuncA type="table" tableValues="1 0"/>
+			</feComponentTransfer>
+			<feGaussianBlur stdDeviation="7"/>
+			<feOffset dx="-3" dy="-3" result="offsetblur"/>
+			<feFlood flood-color="#444" result="color"/>
+			<feComposite in2="offsetblur" operator="in"/>
+			<feComposite in2="SourceAlpha" operator="in"/>
+			<feMerge>
+				<feMergeNode in="SourceGraphic"/>
+				<feMergeNode />
+			</feMerge>
+		</filter>
+		<filter id="defapp-inset-shadow-2">
+			<feComponentTransfer in="SourceAlpha">
+				<feFuncA type="table" tableValues="1 0"/>
+			</feComponentTransfer>
+			<feGaussianBlur stdDeviation="5"/>
+			<feOffset dx="3" dy="3" result="offsetblur"/>
+			<feFlood flood-color="#fff" result="color"/>
+			<feComposite in2="offsetblur" operator="in"/>
+			<feComposite in2="SourceAlpha" operator="in"/>
+			<feMerge>
+				<feMergeNode in="SourceGraphic"/>
+				<feMergeNode />
+			</feMerge>
+		</filter>
+	</defs>
+</svg>
+
+
+<svg id="svg-loading" viewBox="0 0 50 50" cache="false">
+	<style>
+		.svg-loading-group {
+			animation: svg-loading 3s linear infinite;
+			transform-origin: 50% 50%;
+		}
+		.svg-loading-path {
+			stroke-width: var(--stroke-width);
+			stroke: transparent;
+			fill: transparent;
+		}
+		.svg-loading-inner {
+			stroke-dashoffset: 100;
+			stroke-dasharray: 100;
+			stroke-width: var(--stroke-width);
+			stroke-linecap: round;
+			stroke: var(--color-1);
+			animation: svg-loading-circle 3s linear infinite;
+			fill: transparent;
+		}
+		@keyframes svg-loading {
+			0%   { transform: rotate( 0deg ); }
+			100% { transform: rotate( 360deg ); }
+		}
+		@keyframes svg-loading-circle {
+			0%   { stroke-dashoffset: 200; }
+			100% { stroke-dashoffset: -200; }
+		}
+		@keyframes svg-loading-color {
+			100%, 0% { stroke: #709bf4; }
+			30% { stroke: #d700aa; }
+			60% { stroke: #93d293; }
+		}
+	</style>
+	<g class="svg-loading-group">
+		<circle class="svg-loading-path" cx="25" cy="25" r="20"/>
+		<circle class="svg-loading-inner" cx="25" cy="25" r="20"/>
+	</g>
+</svg>
+
+
+		
+<svg id="file-shortcut" viewBox="0 0 512 512">
+	<path fill="#404040" stroke="#fff" stroke-width="25" stroke-linecap="round" stroke-linejoin="round" d="M227.315,147.532l-52.935-89.448l220.137,56.451l-56.453,220.134l-54.097-91.41 c-122.669,72.594-122.11,177.532-37.241,227.494C80.965,421.312,73.506,238.557,227.315,147.532z"/>
+</svg>
+
+<svg id="file-pdf" viewBox="0 0 1024 1024">
+	<path fill="#b00" d="M138.801,790.312c3.975-23.886,19.899-39.81,35.822-55.732c19.899-19.899,43.784-31.847,71.656-47.771 c27.872-15.924,55.732-27.86,83.593-39.809c3.975,0,7.962-3.975,7.962-7.962c23.885-47.771,47.771-95.541,67.67-143.307 c11.938-27.861,19.899-55.732,31.847-83.594v-3.975c-11.937-27.861-23.885-59.708-27.86-91.555 c-7.962-31.847-7.962-63.694-3.976-95.541c3.976-19.899,15.925-35.822,31.848-51.746c3.975-3.975,11.937-3.975,19.898-3.975h31.848 c7.962,0,15.924,3.975,19.898,11.937c11.938,7.962,19.899,19.899,27.861,31.847c7.962,15.924,7.962,31.847,11.937,47.771 c0,47.771-7.962,91.555-15.924,135.349c-3.975,15.924-7.962,27.861-11.937,43.784v3.975c23.885,43.784,55.731,83.593,87.58,119.427 c3.975,3.976,3.975,3.976,11.937,3.976c43.784-7.962,87.58-7.962,127.388-7.962c23.886,0,51.746,3.975,75.632,15.924 c11.937,7.962,23.885,15.924,31.847,27.861c3.975,7.962,7.962,15.924,7.962,23.885v27.861c0,7.962-3.975,15.924-11.938,19.898 c-7.962,7.962-15.924,19.899-31.847,19.899c-7.962,0-19.899,3.975-27.861,3.975c-63.693,3.976-115.439-15.924-167.186-51.746 c-7.962-7.962-19.899-15.924-27.861-23.885c-3.975,0-3.975-3.975-7.962-3.975c-23.885,3.975-47.771,7.962-71.656,15.924 c-31.847,7.962-63.693,19.898-95.541,27.86c-3.975,0-3.975,3.976-7.962,3.976c-19.898,35.822-43.784,71.656-67.67,103.503 c-19.898,23.885-43.784,47.771-67.67,67.67c-11.937,7.962-27.861,15.924-43.784,19.899h-31.847c-7.962,0-11.937,0-19.899-3.976 c-19.899-7.962-35.822-23.885-39.809-43.784c-3.975,0-3.975-7.962-3.975-15.924L138.801,790.312z M489.102,511.65 c-11.937,31.847-27.86,63.693-39.809,95.541l95.541-23.886C524.935,559.421,505.025,531.561,489.102,511.65z M660.275,615.154 c23.885,15.924,51.746,27.86,79.617,35.821c11.938,3.976,19.899,0,27.861-3.975s11.938-15.924,3.975-19.899 c0-3.975-3.975-3.975-7.962-3.975c-7.962-3.975-19.898-3.975-31.847-7.962c-23.885-3.975-47.771-3.975-71.656,0l0,0L660.275,615.154 z M286.093,726.618C286.093,726.618,282.118,726.618,286.093,726.618c-23.885,11.937-47.771,27.86-67.67,43.784 c-11.937,7.962-19.899,19.898-27.861,31.847v7.962c3.975,3.975,3.975,3.975,7.962,3.975c11.937-7.962,19.899-15.924,27.861-19.898 C250.27,774.388,266.194,750.503,286.093,726.618L286.093,726.618z M457.266,324.565 C461.241,324.565,461.241,324.565,457.266,324.565c7.963-23.885,11.938-47.771,11.938-67.67c0-11.937,0-23.885-3.975-35.822 c0-3.975-3.976-3.975-7.963-3.975c-3.986,0-3.975,3.975-7.962,3.975c-7.962,11.937-7.962,23.885-7.962,39.809 c0,11.937,0,19.899,3.976,31.847c7.962,7.962,7.962,19.899,11.937,31.847L457.266,324.565z"/>
+</svg>
+
+<svg id="file-svg" viewBox="0 0 1024 1024">
+	<path fill="#399" d="M1010.565,758.579c0,16.568-13.432,30-30,30H45.614c-16.568,0-30-13.432-30-30V284.101c0-16.568,13.432-30,30-30h934.951 c16.568,0,30,13.432,30,30V758.579z"/>
+	<text fill="#fff" transform="matrix(1 0 0 1 102 675)" font-family="'ArialMT'" font-size="400">SVG</text>
+</svg>
+
+<svg id="file-txt" viewBox="0 0 1024 1024">
+	<path fill="#66f" d="M1010.565,758.579c0,16.568-13.432,30-30,30H45.614c-16.568,0-30-13.432-30-30V284.101c0-16.568,13.432-30,30-30h934.951 c16.568,0,30,13.432,30,30V758.579z"/>
+	<text fill="#fff" transform="matrix(1 0 0 1 112 675)" font-family="'ArialMT'" font-size="400">TXT</text>
+</svg>
+
+<svg id="file-rtf" viewBox="0 0 1024 1024">
+	<path fill="#369" d="M1010.565,758.579c0,16.568-13.432,30-30,30H45.614c-16.568,0-30-13.432-30-30V284.101c0-16.568,13.432-30,30-30h934.951 c16.568,0,30,13.432,30,30V758.579z"/>
+	<text fill="#fff" transform="matrix(1 0 0 1 130 675)" font-family="'ArialMT'" font-size="400">RTF</text>
+</svg>
+
+<svg id="file-zip" viewBox="0 0 1024 1024">
+	<path fill="#990" d="M1010.565,758.579c0,16.568-13.432,30-30,30H45.614c-16.568,0-30-13.432-30-30V284.101c0-16.568,13.432-30,30-30h934.951 c16.568,0,30,13.432,30,30V758.579z"/>
+	<text fill="#fff" transform="matrix(1 0 0 1 220 675)" font-family="'ArialMT'" font-size="400">ZIP</text>
+</svg>
+
+<svg id="file-md" viewBox="0 0 1024 1024">
+	<path fill="#399" d="M156.469,329.948L77.89,349.591v392.888h103.134V499.38l88.397,95.769h58.936l88.396-95.769v243.102h103.134V349.591 l-78.581-19.643L298.885,484.646L156.462,329.948H156.469z"/>
+	<path fill="#399" d="M909.915,311.833v238.853h91.682c-69.967,72.382-139.935,142.349-209.903,212.316 c-65.146-67.556-135.112-139.935-202.668-209.904h84.445V309.414c31.363,21.715,106.161,74.79,120.633,74.79 c14.481,0,86.864-53.077,115.812-72.376V311.833z"/>
+</svg>
+
+<svg id="file-js" viewBox="0 0 1024 1024">
+	<path fill="#292" d="M296.805,231.299h126.311v355.548c0,159.064-74.851,215.205-201.17,215.205c-28.069,0-70.172-4.678-93.566-14.039 L142.418,685.1c18.71,9.355,42.104,14.033,65.491,14.033c51.464,0,88.892-23.395,88.892-112.285L296.805,231.299L296.805,231.299z  M535.393,661.707c32.752,18.713,88.893,37.426,140.352,37.426c60.815,0,88.889-23.393,88.889-60.818s-28.073-56.143-93.565-79.531 c-93.572-32.752-154.386-84.208-154.386-168.419c0-98.248,79.536-168.422,215.201-168.422c65.494,0,112.274,14.038,145.028,28.07 l-28.07,102.922c-23.395-9.355-60.819-28.068-116.958-28.068c-56.144,0-84.212,23.39-84.212,56.141 c0,37.429,32.75,51.464,102.919,79.535c98.251,37.425,145.032,88.886,145.032,168.416c0,93.564-74.852,173.102-229.235,173.102 c-65.498,0-126.316-18.717-159.067-32.754l28.073-107.596V661.707z"/>
+</svg>
+
+<svg id="file-man" viewBox="0 0 1024 1024">
+	<path fill="#66d" d="M957.679,281.174c13.805,19.88,17.671,45.834,9.939,71.235L815.759,852.717c-13.805,46.938-62.4,83.384-109.891,83.384 H196.174c-56.326,0-116.518-44.729-136.949-102.159c-8.835-24.85-8.835-49.147-1.104-70.132c1.104-11.044,3.312-22.089,3.865-35.342 c0.553-8.835-4.418-16.015-3.312-22.641c2.208-13.253,13.805-22.641,22.641-37.551c16.566-27.61,35.342-72.34,41.416-101.056 c2.761-10.492-2.762-22.641,0-32.028c2.761-10.491,13.253-18.223,18.775-28.163c14.909-25.401,34.236-74.549,36.998-100.503 c1.104-11.597-4.418-24.298-1.104-33.133c3.866-12.701,16.015-18.224,24.298-29.268c13.253-18.223,35.342-70.683,38.654-99.95 c1.105-9.389-4.418-18.775-2.761-28.716c2.209-10.492,15.462-21.536,24.298-34.237c23.193-34.237,27.61-109.891,97.742-90.011 l-0.553,1.656c9.388-2.208,18.775-4.97,28.163-4.97h420.235c25.954,0,49.147,11.597,62.953,30.924 c14.357,19.88,17.671,45.834,9.939,71.788L729.062,690.917c-25.954,85.041-40.312,103.816-110.443,103.816H138.743 c-7.179,0-16.014,1.657-20.984,8.283c-4.418,6.627-4.969,11.597-0.552,23.745c11.044,32.029,49.147,38.655,79.519,38.655h509.695 c20.432,0,44.177-11.597,50.251-31.476l165.665-545.037c3.312-10.492,3.312-21.536,2.761-31.476 C937.799,262.398,949.396,270.129,957.679,281.174z M370.122,282.278c-3.314,9.939,2.209,17.671,12.148,17.671h335.746 c9.388,0,19.88-7.731,23.193-17.671l11.597-35.342c3.313-9.94-2.209-17.671-12.148-17.671H404.911 c-9.388,0-19.88,7.73-23.193,17.671L370.122,282.278z M324.288,423.645c-3.313,9.94,2.209,17.672,12.148,17.672h335.747 c9.388,0,19.879-7.731,23.192-17.672l11.597-35.341c3.313-9.94-2.209-17.671-12.148-17.671H359.077 c-9.388,0-19.88,7.73-23.193,17.671L324.288,423.645z"/>
+</svg>
+
+<svg id="file-json" viewBox="0 0 1024 1024">
+	<path fill="#69f" d="M165.682,473.295c61.119,0,69.269-32.595,69.269-61.116c0-24.448-4.079-44.819-4.079-69.264 c0-24.442-4.07-48.892-4.07-69.264c0-85.559,52.963-122.226,138.524-122.226h72.595v77.411h-56.298 c-40.742,0-52.964,24.451-52.964,65.188c0,16.299,4.077,32.597,4.077,52.966c0,16.297,4.071,36.666,4.071,61.11 c0,69.267-28.521,93.71-77.411,105.94c48.891,12.22,77.411,36.665,77.411,105.929c0,24.449-4.071,44.819-4.071,61.117 c0,16.295-4.077,36.667-4.077,48.889c0,40.748,12.222,65.188,52.964,65.188h56.298v77.41h-72.595 c-81.489,0-134.454-32.592-134.454-122.225c0-24.448,0-44.819,4.073-69.264c4.077-24.448,4.077-48.898,4.077-69.266 c0-24.45-8.15-61.114-69.267-61.114l-4.073-77.407V473.295z M858.318,542.557c-61.114,0-69.264,36.667-69.264,61.116 c0,24.444,4.072,44.818,4.072,69.263c4.077,24.447,4.077,48.893,4.077,69.265c0,89.636-57.04,122.23-138.522,122.23h-72.6v-69.265 h16.295c40.74,0,92.961-24.446,92.961-65.191c0-16.292,0-32.594-4.074-48.885c0-20.369-4.069-40.745-4.069-61.114 c0-69.267,28.526-93.713,77.411-105.936c-48.893-12.223-77.411-36.666-77.411-105.933c0-24.45,4.069-44.817,4.069-61.113 c4.074-20.372,4.074-36.667,4.074-52.969c0-40.743-56.293-61.117-92.961-65.188h-16.295v-77.412h72.6 c85.559,0,138.522,36.666,138.522,122.232c0,24.449-4.077,44.818-4.077,69.263c-4.072,24.445-4.072,48.893-4.072,69.259 c0,28.521,8.147,61.119,69.264,61.119v69.256V542.557z"/>
+</svg>
+
+<svg id="file-html" viewBox="0 0 1024 1024">
+	<path fill="#c60" d="M144.188,154.407l51.862,663.395c1.082,9.724,7.565,18.369,17.287,21.608l273.349,86.435c4.323,1.079,9.729,1.079,15.127,0 l273.354-86.435c9.723-3.239,16.206-11.885,17.287-21.608l51.862-663.395c-1.079-14.051-11.884-25.932-25.933-25.932H167.956 c-14.051,0-24.852,11.885-23.771,25.932H144.188z M709.264,360.767H371.085l9.725,93.996h320.894l-20.526,267.956L493.18,783.223 l-188-59.423l-10.807-140.458h98.318v69.148l102.644,28.089l102.644-28.089l7.565-109.125H291.129L270.6,275.416h446.222 l-7.558,85.353L709.264,360.767z"/>
+</svg>
+
+<svg id="file-image" viewBox="0 0 1024 1024">
+	<path fill="#b2b" d="M359.499,373.499c0,50.516-40.983,91.502-91.499,91.502c-50.517,0-91.5-40.986-91.5-91.502s40.983-91.5,91.5-91.5 C318.516,281.999,359.499,322.983,359.499,373.499z M847.5,556.5V764h-671v-85.5L329,525.999l76.25,76.25l244.001-243.998 L847.5,556.5z M893.25,221H130.749c-8.101,0-15.249,7.148-15.249,15.251v573.498c0,8.102,7.148,15.25,15.249,15.25H893.25 c8.102,0,15.25-7.148,15.25-15.25V236.251C908.5,228.148,901.352,221,893.25,221z M969.5,236.251v573.498 c0,41.938-34.312,76.251-76.25,76.251H130.749C88.812,886,54.5,851.688,54.5,809.749V236.251C54.5,194.312,88.812,160,130.749,160 H893.25C935.188,160,969.5,194.312,969.5,236.251z"/>
+</svg>
+
+<svg id="file-mp3" viewBox="0 0 1024 1024">
+	<path fill="#66d" d="M820.532,134.714v574.131c0,72.278-108.162,98.422-164.037,98.422s-164.038-26.144-164.038-98.422 c0-72.28,108.163-98.423,164.038-98.423c33.832,0,67.666,6.151,98.424,19.992V355.139l-393.69,121.491v363.444 c0,72.279-108.162,98.423-164.037,98.423c-55.875,0-164.037-26.144-164.037-98.423c0-72.278,108.162-98.422,164.037-98.422 c33.832,0,67.666,6.151,98.422,19.992v-495.7c0-21.53,14.354-40.496,34.858-47.16l426.496-131.23 c4.615-1.538,9.227-2.05,14.354-2.05C798.489,85.503,820.532,107.545,820.532,134.714z"/>
+</svg>
+
+	</svg>
+
+	<Mime>
+	<i id="_dir" icon="folder" name="Folder" opens-with="finder"/>
+	<i id="app" icon="app-icon" name="Application"/>
+	<i id="md" icon="md" name="Markdown" opens-with="manual"/>
+	<i id="man" icon="man" name="Manual" opens-with="manual"/>
+	<i id="txt" icon="text" name="Text" preview="text" opens-with="textEdit"/>
+	<i id="rtf" icon="text" name="RTF"/>
+	<i id="js" icon="js" name="Javascript" preview="text"/>
+	<i id="json" icon="json" name="Json" preview="text"/>
+	<i id="mov" icon="movie" name="Movie"/>
+	<i id="mp3" icon="mp3" name="Mp3" opens-with="tunes"/>
+	<i id="mid" icon="mp3" name="Midi" opens-with="tunes"/>
+	<i id="md" icon="markdown" name="Markdown" preview="text"/>
+	<i id="css" icon="json" name="CSS" preview="text"/>
+	<i id="less" icon="json" name="Less" preview="text"/>
+	<i id="htm" icon="html" name="Html"/>
+	<i id="html" icon="html" name="Html"/>
+	<i id="svg" icon="xml" name="SVG" preview="image"/>
+	<i id="xml" icon="xml" name="XML"/>
+	<i id="xsl" icon="xml" name="XSL"/>
+	<i id="pdf" icon="pdf" name="Pdf" opens-with="preview"/>
+	<i id="gif" icon="image" name="Gif" preview="image"/>
+	<i id="png" icon="image" name="Ping" preview="image"/>
+	<i id="jpg" icon="image" name="Jpeg" preview="image"/>
+	<i id="jpeg" icon="image" name="Jpeg" preview="image"/>
+	<i id="zip" icon="zip" name="Zip"/>
+	<i id="license" icon="license" name="License" preview="text"/>
+	<i id="unknown" icon="file" name="Unknown"/>
+	<i id="package.json" icon="npm" name="Json"/>
+	<i id="gulpfile.js" icon="gulp" name="Javascript"/>
+</Mime>
+	
+<Shell>
+	<i object="sys" path="defiant_" type="System" description="System Object">
+		<i switch="a" name="desktop_.selectAll_" arg="NONE" description="Select all files on desktop."/>
+		<i switch="b" name="manager_.info_" arg="NONE" description="Returns system info."/>
+		<i switch="d" name="dock_.position_" arg="[left|bottom|right]" description="Positions dock."/>
+		<i switch="i" name="desktop_.updateIconColor_" arg="NONE" description="Set folder icon color desktop."/>
+		<i switch="m" name="menuBar_.settings_" arg="clock [digital|analog]" description="Changes menubar clock style."/>
+		<i switch="p" name="shell_.parseCommand_" arg="[stdIn]" description="Parses given string as Shell command."/>
+		<i switch="s" name="spotlight_.toggleSearch_" arg="NONE" description="Toggle spotlight search."/>
+		<i switch="t" name="desktop_.toggleIcons_" arg="[true|false]" description="Toggle icons on desktop."/>
+		<i switch="v" name="menuBar_.updateVolume_" arg="[1-10]" description="Changes system volume."/>
+	</i>
+	<i object="win" path="defiant_.window_" type="Window" description="Controls Windows and Applications">
+		<i switch="o" name="open_" alias="open" arg="[id]" description="Opens application."/>
+		<i switch="c" name="close_" arg="[id]" description="Closes window."/>
+		<i switch="s" name="updateState_" arg="state [id]" description="Changes window state; min|max|restore."/>
+	</i>
+	<i object="fs" path="defiant_.fileSystem_" type="Filesystem" description="Filesystem Interface">
+		<i switch="g" name="path_.getName_" arg="[path, ...]" description="Returns real name of folder."/>
+		<i switch="j" name="path_.join_" arg="[file]" description="Lists folder contents."/>
+		<i switch="d" name="diskInfo_" arg="NONE" description="Returns user disk information."/>
+		<i switch="l" name="list_" arg="[file]" description="Returns folder contents as object."/>
+		<i switch="r" name="readFile_" arg="[file]" description="Returns file."/>
+		<i switch="p" name="previewFile_" arg="[file]" description="Returns a preview of file, if small."/>
+		<i switch="w" name="writeFile_" arg="[file, data]" description="Writes file to filesystem."/>
+		<i switch="o" name="open_" arg="[file]" description="Opens file in associated app."/>
+		<i switch="u" name="openUrl_" arg="[url]" description="[Depricate?] Fetches URL, returns like file."/>
+	</i>
+	<i object="ws" path="defiant_.workSpace_" type="Workspace" description="Workspace API">
+		<i switch="a" name="getAllWs_" arg="[type]" description="Returns all wallpapers."/>
+		<i switch="w" name="wallpaper_" arg="[id, [bg]]" description="Sets / gets background of given workspace."/>
+		<i switch="s" name="switchTo_" arg="[int]" description="Switches to workspace."/>
+	</i>
+</Shell>
+
+	
+<ContextMenu>
+	<!--
+		hotkey="⌘ D"	command
+		hotkey="⌥ P"	option
+		hotkey="⌃ P"	control
+		hotkey="⇧ P"	shift
+		hotkey="⎋ P"	escape
+	-->
+	<Hotkeys>
+		<Menu shell="ws -s 1" hotkey="alt+1" description="Switch to Workspace 1."/>
+		<Menu shell="ws -s 2" hotkey="alt+2" description="Switch to Workspace 2."/>
+		<Menu shell="ws -s 3" hotkey="alt+3" description="Switch to Workspace 3."/>
+		<Menu shell="sys -s" hotkey="alt+space" description="Focus on spotlight."/>
+		<Menu shell="sys -a" hotkey="meta+a" description="Select all files on desktop."/>
+		<Menu shell="win -s min" hotkey="meta+m" description="Minimizes active window."/>
+	</Hotkeys>
+
+	<MenuBar for="system">
+		<Group>
+			<Menu icon="icon-def-ant" name="Defiant">
+				<Menu name="About This Mac"/>
+				<Menu type="divider"/>
+				<Menu name="System Preferences" hotkey="meta+,"/>
+				<Menu name="App Store&#8230;"/>
+				<Menu type="divider"/>
+				<Menu name="Recent Items"/>
+				<Menu type="divider"/>
+				<Menu name="Sleep"/>
+				<Menu name="Restart&#8230;"/>
+				<Menu name="Shut Down&#8230;"/>
+				<Menu type="divider"/>
+				<Menu name="Lock Screen"/>
+				<Menu name="Log out Hakan Bilgin"/>
+			</Menu>
+		</Group>
+		<Group>
+			<Menu icon="icon-volume" class="menubar-speakers_">
+				<Menu type="caption" name="Volume:"/>
+				<Menu type="slider" min="0" max="100" value="50" shell="sys -v"/>
+				<Menu type="divider"/>
+				<Menu name="Sound Preferences"/>
+			</Menu>
+			<Menu icon="icon-magnify" class="menubar-spotlight_" shell="sys -s"/>
+			<Menu icon="icon-clock" class="menubar-date-time_">
+				<Menu name="View as Analogue" shell="sys -m clock analog" check-group="menubar-clock"/>
+				<Menu name="View as Digital" shell="sys -m clock digital" check-group="menubar-clock" is-checked="1"/>
+				<Menu type="divider"/>
+				<Menu name="Open Date &amp; Time Preferences"/>
+			</Menu>
+			<Menu icon="icon-power" class="menubar-username_">
+				<Menu name="Lock Screen"/>
+				<Menu name="User &amp; Group Preferences"/>
+				<Menu type="divider"/>
+				<Menu name="Log out Hakan Bilgin"/>
+			</Menu>
+		</Group>
+	</MenuBar>
+
+	<MenuBar for="menubar-application-default">
+		<Menu name="{{name}}">
+			<Menu name="About {{name}}"/>
+			<Menu type="divider"/>
+			<Menu name="Hide {{name}}"/>
+			<Menu name="Hide Others"/>
+			<Menu name="Show All" disabled="1"/>
+			<Menu type="divider"/>
+			<Menu name="Quit {{name}}"/>
+		</Menu>
+		<Menu name="Window">
+			<Menu name="Minimize" shell="win -s min"/>
+			<Menu name="Maximize" shell="win -s max"/>
+			<Menu type="divider"/>
+			<Menu name="Close Window" shell="win -c"/>
+		</Menu>
+	</MenuBar>
+
+	<Menu for="dock">
+		<Menu name="Turn Hiding On"/>
+		<Menu name="Turn Magnification On"/>
+		<Menu name="Position on Screen">
+			<Menu name="Left" shell="sys -d left" check-group="dock-position"/>
+			<Menu name="Bottom" shell="sys -d bottom" check-group="dock-position" is-checked="1"/>
+			<Menu name="Right" shell="sys -d right" check-group="dock-position"/>
+		</Menu>
+		<Menu name="Minimise Using">
+			<Menu name="Genie Effect" check-group="dock-minimise" is-checked="1"/>
+			<Menu name="Scale Effect" check-group="dock-minimise"/>
+		</Menu>
+		<Menu type="divider"/>
+		<Menu name="Dock Preferences" shell="win -o preferences"/>
+	</Menu>
+
+	<Menu for="desktop">
+		<Menu name="Games&#8230;">
+			<Menu name="Solitaire" shell="win -o solitaire"/>
+			<Menu name="Sudoku" shell="win -o sudoku"/>
+			<Menu name="2048" shell="win -o 2048"/>
+			<Menu name="Othello" shell="win -o othello"/>
+			<Menu name="Mines" shell="win -o mines"/>
+		</Menu>
+		<Menu type="divider"/>
+		<Menu name="Finder" shell="win -o finder"/>
+		<Menu name="Synth" shell="win -o synth"/>
+		<Menu name="Numbers" shell="win -o numbers"/>
+		<Menu name="Tunes" shell="win -o tunes"/>
+		<Menu name="Manual" shell="win -o manual"/>
+		<Menu name="Preview" shell="win -o preview"/>
+		<Menu name="Terminal" shell="win -o terminal"/>
+		<Menu name="Text Editor" shell="win -o textEdit"/>
+		<Menu name="Calculator" shell="win -o calculator"/>
+		<Menu name="System" shell="win -o system"/>
+		<Menu type="divider"/>
+		<Menu name="Show Icons on Desktop" check-group="desktop-icons" is-checked="1" shell="sys -t"/>
+		<Menu type="divider"/>
+		<Menu type="colors" caption="Folder Icon Color:" shell="sys -i">
+			<Color arg="#157efb" active="1"/>
+			<Color arg="#944194"/>
+			<Color arg="#de3a43"/>
+			<Color arg="#f5822e"/>
+			<Color arg="#fab73b"/>
+			<Color arg="#65b84d"/>
+			<Color arg="#989898"/>
+		</Menu>
+		<Menu type="divider"/>
+		<Menu name="Desktop Settings" shell="win -o preferences"/>
+	</Menu>
+</ContextMenu>
+
+	<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<xsl:output method="html" omit-xml-declaration="yes"/>
+<xsl:strip-space elements="*"/>
+<xsl:template match="text()" />
+
+	
+<xsl:variable name="white-space" select="'                           '" />
+<xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
+<xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
+
+<xsl:template name="substring-after-last">
+	<xsl:param name="string" />
+	<xsl:param name="delimiter" />
+	<xsl:choose>
+		<xsl:when test="contains($string, $delimiter)">
+			<xsl:call-template name="substring-after-last">
+				<xsl:with-param name="string" select="substring-after($string, $delimiter)" />
+				<xsl:with-param name="delimiter" select="$delimiter" />
+			</xsl:call-template>
+		</xsl:when>
+		<xsl:otherwise><xsl:value-of select="$string" /></xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+<xsl:template name="file-size">
+	<xsl:param name="bytes"/>
+	<xsl:param name="kind"/>
+	<xsl:choose>
+		<xsl:when test="$kind = '_dir'">--</xsl:when>
+		<xsl:when test="format-number($bytes div 1024,'0') = 0"><xsl:value-of select="$bytes"/> bytes</xsl:when>
+		<xsl:when test="format-number($bytes div 1048576,'####') &gt; 1024"><xsl:value-of select="format-number($bytes div 1073741824,'###0.0')"/> GB</xsl:when>
+		<xsl:when test="format-number($bytes div 1024,'####') &gt; 1024"><xsl:value-of select="format-number($bytes div 1048576,'###0.0')"/> MB</xsl:when>
+		<xsl:otherwise><xsl:value-of select="format-number($bytes div 1024,'###0.0')"/> KB</xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+<xsl:template name="_dock">
+	<xsl:for-each select="./*">
+		<xsl:choose>
+			<xsl:when test="@type='divider'"><div class="dock-divider_"></div></xsl:when>
+			<xsl:otherwise>
+				<div>
+					<xsl:attribute name="class">dock-icon_
+						<xsl:if test="@icon = 'app-icon-finder'">dock-icon-active_</xsl:if>
+					</xsl:attribute>
+					<xsl:attribute name="style">background-image: url(<xsl:choose>
+							<xsl:when test="@icon">/ant/icons/<xsl:value-of select="@icon"/>.png</xsl:when>
+							<xsl:otherwise>/app/ant/<xsl:value-of select="@id"/>/icon</xsl:otherwise>
+						</xsl:choose>)</xsl:attribute>
+					<xsl:attribute name="data-id"><xsl:value-of select="@did"/></xsl:attribute>
+					<div class="dock-tooltip_"><i class="dock-tooltip-arrow_"></i><xsl:value-of select="@name"/></div>
+				</div>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:for-each>
+</xsl:template>
+
+	
+<xsl:template name="_spotlight">
+	<div class="spotlight-input_">
+		<span class="icon-magnify"></span>
+		<span class="spotlight-input-content_" data-content="— No Results"></span>
+		<input type="text" placeholder="Spotlight Search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+		<div class="opens-with-app-icon"></div>
+	</div>
+	<div class="spotlight-matches_"></div>
+</xsl:template>
+
+<xsl:template name="_spotlight-hits">
+	<div class="spotlight-list_">
+		<xsl:for-each select="./*">
+			<xsl:if test="count(./*) &gt; 0">
+				<div class="spotlight-header_"><xsl:value-of select="@name"/></div>
+				<xsl:for-each select="./*">
+					<div>
+						<xsl:attribute name="data-id"><xsl:value-of select="@match-id"/></xsl:attribute>
+						<xsl:attribute name="data-shell"><xsl:value-of select="@match-shell"/></xsl:attribute>
+						<xsl:attribute name="data-opens-with"><xsl:value-of select="@opens-with"/></xsl:attribute>
+						<xsl:attribute name="class">
+							spotlight-item_ <xsl:value-of select="@type"/>
+							<xsl:if test="@match-id = 1"> spotlight-active_</xsl:if>
+						</xsl:attribute>
+						<i class="neo-file_"><xsl:call-template name="icon-kind"/></i>
+						<span class="name"><xsl:value-of select="@name"/></span>
+					</div>
+				</xsl:for-each>
+			</xsl:if>
+		</xsl:for-each>
+	</div>
+	<div class="preview-wrapper_"></div>
+</xsl:template>
+
+<xsl:template name="_hit-details">
+	<xsl:param name="node" select="."/>
+
+	<div class="preview-box_">
+		<xsl:choose>
+			<xsl:when test="$node/@kind = 'app'">
+				<div class="preview-image_">
+					<xsl:attribute name="style">background-image: url('/ant/icons/<xsl:value-of select="$node/@icon"/>.png');</xsl:attribute>
+				</div>
+				<h2><xsl:value-of select="$node/@name"/></h2>
+				<h3>Version: <xsl:value-of select="$node/@version"/></h3>
+			</xsl:when>
+			<xsl:when test="//Mime/*[@id = $node/@kind]/@preview = 'image'">
+				<div class="preview-image_">
+					<xsl:attribute name="style">background-image: url('<xsl:value-of select="$node/@bg-path"/>?w=232&amp;h=148');</xsl:attribute>
+				</div>
+				<h2 class="image-name"><xsl:value-of select="$node/@name"/></h2>
+			</xsl:when>
+			<xsl:when test="$node[@kind = '_dir']">
+				<div class="generic-item_">
+					<xsl:attribute name="style">background-image: url(/ant/icons/generic-folder.png);</xsl:attribute>
+				</div>
+				<h2><xsl:value-of select="$node/@name"/></h2>
+				<h3>
+					<xsl:choose>
+						<xsl:when test="$node/@child-count = 0">Empty</xsl:when>
+						<xsl:when test="$node/@child-count = 1">1 item</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="$node/@child-count"/> items
+						</xsl:otherwise>
+					</xsl:choose>
+				</h3>
+			</xsl:when>
+			<xsl:otherwise>
+				<div class="generic-item_">
+					<xsl:attribute name="style">background-image: url(/ant/icons/generic-document.png);</xsl:attribute>
+				</div>
+				<span class="neo-file_ file-icon_">
+					<xsl:attribute name="data-kind"><xsl:value-of select="$node/@kind"/></xsl:attribute>
+					<xsl:call-template name="icon-kind"/>
+				</span>
+				<h2><xsl:value-of select="$node/@name"/></h2>
+			</xsl:otherwise>
+		</xsl:choose>
+
+		<div class="file-path_">
+			<xsl:value-of select="translate($node/@item-path, '/', '→')"/>
+		</div>
+	</div>
+
+	<div class="preview-details_">
+		<div class="field_">
+			<span>Kind</span>
+			<span>
+				<xsl:value-of select="//Mime/*[@id = $node/@kind]/@name"/>
+				<xsl:if test="$node/@kind != 'app' and $node/@kind != '_dir'"> file</xsl:if>
+			</span>
+		</div>
+		<div class="field_">
+			<span>Size</span>
+			<span><xsl:call-template name="file-size">
+					<xsl:with-param name="bytes" select="$node/@size" />
+				</xsl:call-template></span>
+		</div>
+		<div class="field_">
+			<span>Modified</span>
+			<span><xsl:value-of select="$node/@mDate"/></span>
+		</div>
+	</div>
+</xsl:template>
+
+	
+<xsl:template name="_desktop">
+	<xsl:for-each select="./*">
+		<div class="neo-file_">
+			<xsl:attribute name="data-kind"><xsl:value-of select="@kind"/></xsl:attribute>
+			<xsl:if test="substring( @mode, 1, 1 ) = 'l'">
+				<xsl:attribute name="data-link"><xsl:value-of select="@link"/></xsl:attribute>
+			</xsl:if>
+			<xsl:attribute name="style">
+				top: <xsl:value-of select="//Settings/Desktop/Icons/*[@name = current()/@name]/@top"/>px;
+				left: <xsl:value-of select="//Settings/Desktop/Icons/*[@name = current()/@name]/@left"/>px;
+			</xsl:attribute>
+
+			<xsl:choose>
+				<xsl:when test="(//Mime/*[@id=current()/@kind]/@preview = 'image' or //Mime/*[@id=current()/@kind]/@preview = 'svg') and substring( @mode, 1, 1 ) != 'l'">
+					<span class="preview-box_">
+						<span class="preview-image_">
+							<xsl:attribute name="style">background-image: url('<xsl:call-template name="get-file-path"/>?w=232&amp;h=148');</xsl:attribute>
+						</span>
+					</span>
+				</xsl:when>
+				<xsl:otherwise>
+					<span>
+						<xsl:call-template name="icon-type"/>
+						<xsl:if test="@kind != '_dir'">
+							<xsl:call-template name="icon-kind"/>
+						</xsl:if>
+						<xsl:if test="substring( @mode, 1, 1 ) = 'l'">
+							<div class="shortcut-item_" style="background-image: url(/ant/icons/file-shortcut.png);"></div>
+						</xsl:if>
+					</span>
+				</xsl:otherwise>
+			</xsl:choose>
+
+			<span><xsl:value-of select="@name"/></span>
+		</div>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="icon-type">
+	<div class="generic-item_">
+		<xsl:attribute name="style">background-image: url(/ant/icons/<xsl:call-template name="select-icon"/>.png);</xsl:attribute>
+	</div>
+</xsl:template>
+
+<xsl:template name="select-icon">
+	<xsl:param name="detailed"/>
+	<xsl:choose>
+		<xsl:when test="@kind = 'app'"><xsl:value-of select="@icon"/></xsl:when>
+		<xsl:when test="@kind = '_dir'">generic-folder</xsl:when>
+		<xsl:when test="$detailed = 1 and @kind = 'html'">file-html</xsl:when>
+		<xsl:when test="$detailed = 1 and @kind = 'htm'">file-html</xsl:when>
+		<xsl:when test="$detailed = 1 and @kind = 'png'">file-image</xsl:when>
+		<xsl:when test="$detailed = 1 and @kind = 'jpg'">file-image</xsl:when>
+		<xsl:when test="$detailed = 1 and @kind = 'gif'">file-image</xsl:when>
+		<xsl:when test="$detailed = 1 and @kind = 'js'">file-js</xsl:when>
+		<xsl:when test="$detailed = 1 and @kind = 'json'">file-json</xsl:when>
+		<xsl:when test="$detailed = 1 and @kind = 'pdf'">file-pdf</xsl:when>
+		<xsl:when test="$detailed = 1 and @kind = 'rtf'">file-rtf</xsl:when>
+		<xsl:when test="$detailed = 1 and @kind = 'txt'">file-txt</xsl:when>
+		<xsl:when test="$detailed = 1 and @kind = 'svg'">file-svg</xsl:when>
+		<xsl:when test="$detailed = 1 and @kind = 'man'">file-man</xsl:when>
+		<xsl:when test="$detailed = 1 and @kind = 'zip'">file-zip</xsl:when>
+		<xsl:when test="$detailed = 1 and @kind = 'mp3'">file-mp3</xsl:when>
+		<xsl:when test="$detailed = 1 and @kind = 'md'">file-md</xsl:when>
+		<xsl:otherwise>generic-document</xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+<xsl:template name="icon-kind">
+	<div class="generic-item_">
+		<xsl:attribute name="style">background-image: url(/ant/icons/<xsl:call-template name="select-icon">
+				<xsl:with-param name="detailed" select="1" />
+			</xsl:call-template>.png);</xsl:attribute>
+	</div>
+</xsl:template>
+
+<xsl:template name="get-item-name">
+	<xsl:choose>
+		<xsl:when test="@name"><xsl:value-of select="@name"/></xsl:when>
+		<xsl:when test="@path = '/'"><xsl:value-of select="//FileSystem/@name"/></xsl:when>
+		<xsl:when test="//FsAlias/*[@path = current()/@path]"><xsl:value-of select="//FsAlias/*[@path = current()/@path]/@value"/></xsl:when>
+		<xsl:otherwise><xsl:call-template name="substring-after-last">
+				<xsl:with-param name="string" select="@path" />
+				<xsl:with-param name="delimiter" select="'/'" />
+			</xsl:call-template></xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+<xsl:template name="get-file-path">
+	<xsl:param name="node" select="."/>
+	<xsl:if test="name($node/..) = 'FileSystem'">
+		<xsl:text>/fs</xsl:text>
+	</xsl:if>
+	<xsl:if test="name($node/..) != 'FileSystem' and name($node) != 'FileSystem'">
+		<xsl:call-template name="get-file-path">
+			<xsl:with-param name="node" select="$node/.." />
+		</xsl:call-template>
+	</xsl:if>
+	<xsl:text>/</xsl:text>
+	<xsl:choose>
+		<xsl:when test="name($node) = 'FileSystem'">fs</xsl:when>
+		<xsl:otherwise><xsl:value-of select="$node/@name"/></xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+	
+<xsl:template name="_menubar">
+	<xsl:for-each select="./*">
+		<xsl:if test="name() = 'Menu'">
+			<xsl:call-template name="_menubar-item"/>
+		</xsl:if>
+		<xsl:if test="name() = 'Group'">
+			<div class="menubar-group_">
+				<xsl:call-template name="_menubar"/>
+			</div>
+		</xsl:if>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="_menubar-item">
+	<div>
+		<xsl:attribute name="data-menu"><xsl:value-of select="@_id"/></xsl:attribute>
+		<xsl:attribute name="class">menubar-menu_ 
+			<xsl:value-of select="@class"/><xsl:text> </xsl:text>
+			<xsl:value-of select="//Settings/GuiMenubar/i[@id = current()/@class]/@value"/>
+		</xsl:attribute>
+		<xsl:choose>
+			<xsl:when test="@icon">
+
+				<xsl:choose>
+					<xsl:when test="@icon = 'icon-volume'">
+						<svg>
+							<xsl:attribute name="style">--vol1: transparent1; --vol2: transparent1; --vol3: transparent1;</xsl:attribute>
+							<xsl:attribute name="class">menubar-icon-volume_</xsl:attribute>
+							<use>
+								<xsl:attribute name="xlink:href">#<xsl:value-of select="@icon"/></xsl:attribute>
+							</use>
+						</svg>
+					</xsl:when>
+					<xsl:when test="@icon = 'icon-clock'">
+						<svg>
+							<xsl:attribute name="class">menubar-icon-clock_</xsl:attribute>
+							<use>
+								<xsl:attribute name="xlink:href">#<xsl:value-of select="@icon"/></xsl:attribute>
+							</use>
+						</svg>
+						<span></span>
+					</xsl:when>
+					<xsl:otherwise>
+						<div class="menubar-png-icon_">
+							<xsl:attribute name="style">background-image: url(/ant/icons/<xsl:value-of select="@icon"/>.png);</xsl:attribute>
+						</div>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="@name"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</div>
+</xsl:template>
+
+	
+<xsl:template name="_window">
+	<div>
+		<xsl:attribute name="data-id"><xsl:value-of select=".//meta[@name='id']/@value"/></xsl:attribute>
+		<xsl:attribute name="data-context"><xsl:value-of select=".//meta[@name='id']/@value"/></xsl:attribute>
+		<xsl:if test=".//meta[@name='resize']/@value = 'disabled'">
+			<xsl:attribute name="data-resize"><xsl:value-of select=".//meta[@name='resize']/@value"/></xsl:attribute>
+		</xsl:if>
+		<xsl:choose>
+			<xsl:when test=".//meta[@name='fullscreen']/@value = 'true'">
+				<xsl:attribute name="class">ant-window_ antwin-fullscreen_
+					<xsl:if test=".//meta[@name='headless']"> antwin-headless_</xsl:if>
+					<xsl:if test="./Head/ToolBar"> has-ToolBar_</xsl:if>
+					<xsl:if test="./Head/IconBar"> has-IconBar_</xsl:if>
+				</xsl:attribute>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:attribute name="style">
+					top: <xsl:value-of select=".//meta[@name='top']/@value"/>px; 
+					left: <xsl:value-of select=".//meta[@name='left']/@value"/>px;
+				</xsl:attribute>
+				<xsl:attribute name="class">ant-window_ 
+					<xsl:if test=".//meta[@name='headless']"> antwin-headless_
+						<xsl:if test=".//meta[@name='headless']/@theme = 'dark'">neo-theme-dark_</xsl:if>
+						<xsl:if test=".//meta[@name='headless']/@theme = 'blank'">neo-theme-blank_</xsl:if>
+					</xsl:if>
+					<xsl:if test="./Head/ToolBar"> has-ToolBar_</xsl:if>
+					<xsl:if test="./Head/IconBar"> has-IconBar_</xsl:if>
+					<xsl:if test=".//meta[@name='statusbar']"> has-StatusBar_</xsl:if>
+					<xsl:if test="./Head/CaptionToolBar"> has-ThickCaption_</xsl:if>
+					<xsl:if test="count(./Head/CaptionToolBar/Group) = 1"> has-noTitle_</xsl:if>
+				</xsl:attribute>
+			</xsl:otherwise>
+		</xsl:choose>			
+
+		<div class="win-resize_ n-resize_"></div> <div class="win-resize_ s-resize_"></div>
+		<div class="win-resize_ e-resize_"></div> <div class="win-resize_ w-resize_"></div>
+		<div class="win-resize_ ne-resize_"></div> <div class="win-resize_ nw-resize_"></div>
+		<div class="win-resize_ se-resize_"></div> <div class="win-resize_ sw-resize_"></div>
+		
+		<!--<xsl:if test="not(.//meta[@name='fullscreen' and @value = 'true'])">-->
+			<div>
+				<xsl:attribute name="class">win-caption-bar_ 
+					<xsl:if test=".//meta[@name='headless']">window-caption-bar</xsl:if>
+				</xsl:attribute>
+				<div>
+					<xsl:attribute name="class">win-caption-buttons_ 
+						<xsl:if test=".//meta[@name='headless']">window-caption-buttons</xsl:if>
+					</xsl:attribute>
+					<btn class="wincap-close_">
+						<span class="wincap-icon_"></span>
+					</btn>
+					<btn>
+						<xsl:attribute name="class">wincap-minimize_ <xsl:if test=".//meta[@name='minimize' and @value='disabled']">win-disabled_</xsl:if></xsl:attribute>
+						<span class="wincap-icon_"></span>
+					</btn>
+					<btn>
+						<xsl:attribute name="class">wincap-maximize_ <xsl:if test=".//meta[@name='maximize' and @value='disabled']">win-disabled_</xsl:if></xsl:attribute>
+						<span class="wincap-icon_"></span>
+					</btn>
+				</div>
+				<div class="win-caption-title_">
+					<xsl:if test="not(.//meta[@name='headless'])">
+						<div class="caption-title-span_"><xsl:value-of select=".//meta[@name='title']/@value"/></div>
+						<div class="caption-title-span_ wincap-is-dirty_">Edited</div>
+					</xsl:if>
+				</div>
+			</div>
+		<!--</xsl:if>-->
+
+		<xsl:choose>
+			<xsl:when test="./Head/CaptionToolBar"><xsl:call-template name="_window-caption-toolbar"/></xsl:when>
+			<xsl:when test="./Head/ToolBar"><xsl:call-template name="_window-toolbar"/></xsl:when>
+			<xsl:when test="./Head/IconBar"><xsl:call-template name="_window-iconbar"/></xsl:when>
+		</xsl:choose>
+
+		<xsl:if test="./Head/TabBar">
+			<xsl:call-template name="_window-tabbar"/>
+		</xsl:if>
+
+		<div>
+			<xsl:attribute name="class">win-body_ 
+				<xsl:if test=".//meta[@name='headless']">window-body</xsl:if>
+			</xsl:attribute>
+			<xsl:if test="not(.//meta[@name='fullscreen' and @value = 'true'])">
+				<xsl:attribute name="style">
+					width: <xsl:value-of select=".//meta[@name='width']/@value"/>px; 
+					height: <xsl:value-of select=".//meta[@name='height']/@value"/>px;
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:value-of select=".//WindowBody" disable-output-escaping="yes"/>
+		</div>
+
+		<xsl:if test="./Foot">
+			<div class="win-status-bar_">
+				<xsl:for-each select="./Foot/*">
+					<xsl:call-template name="_window-group"/>
+				</xsl:for-each>
+			</div>
+		</xsl:if>
+	</div>
+</xsl:template>
+
+<xsl:template name="_window-iconbar">
+	<div class="win-iconbar_">
+	</div>
+</xsl:template>
+
+<xsl:template name="_window-caption-toolbar">
+	<div class="window-caption-toolbar_">
+		<xsl:for-each select="./Head/CaptionToolBar/*">
+			<xsl:call-template name="_window-group"/>
+		</xsl:for-each>
+	</div>
+</xsl:template>
+
+<xsl:template name="_window-toolbar">
+	<div class="win-toolbar_">
+		<xsl:for-each select="./Head/ToolBar/*">
+			<xsl:call-template name="_window-group"/>
+		</xsl:for-each>
+	</div>
+</xsl:template>
+
+<xsl:template name="_window-group">
+	<xsl:choose>
+		<xsl:when test="name() = 'Group'">
+			<div>
+				<xsl:if test="@width"><xsl:attribute name="style">width: <xsl:value-of select="@width"/>;</xsl:attribute></xsl:if>
+				<xsl:attribute name="class">toolbar-group_ 
+					<xsl:if test="@align = 'center'">toolbar-group-center_ </xsl:if>
+					<xsl:value-of select="@class"/>
+				</xsl:attribute>
+				<xsl:for-each select="./*">
+					<xsl:call-template name="_window-group"/>
+				</xsl:for-each>
+			</div>
+		</xsl:when>
+		<xsl:when test="name() = 'Tool'">
+			<xsl:call-template name="_window-tool"/>
+		</xsl:when>
+		<xsl:when test="name() = 'Select'">
+			<div class="toolbar-selectbox_">
+				<xsl:attribute name="data-menu"><xsl:value-of select="@menu"/></xsl:attribute>
+				<div class="selectbox-selected_">
+					<xsl:if test="@width"><xsl:attribute name="style">width: <xsl:value-of select="@width"/>px;</xsl:attribute></xsl:if>
+					<xsl:value-of select="@name"/>
+				</div>
+				<div class="chevron-down_"></div>
+			</div>
+		</xsl:when>
+		<xsl:when test="name() = 'Options'">
+			<div class="toolbar-options_" sys-click="do-toolbar-options">
+				<xsl:for-each select="./*">
+					<xsl:call-template name="_window-tool"/>
+				</xsl:for-each>
+			</div>
+		</xsl:when>
+		<xsl:when test="name() = 'Field'">
+			<div class="toolbar-field_">
+				<xsl:copy-of select="./*"/>
+			</div>
+		</xsl:when>
+		<xsl:when test="name() = 'Search'">
+			<div class="toolbar-search_">
+				<input type="text" name="field-search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+					<xsl:if test="@placeholder"><xsl:attribute name="placeholder"><xsl:value-of select="@placeholder"/></xsl:attribute></xsl:if>
+				</input>
+				<div class="toolbar-search-icon_ icon-magnify_"></div>
+				<div class="toolbar-search-icon_ icon-clear_"></div>
+			</div>
+		</xsl:when>
+		<xsl:when test="name() = 'Text'">
+			<span>
+				<xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
+				<xsl:value-of select="." disable-output-escaping="yes"/>
+			</span>
+		</xsl:when>
+		<xsl:when test="name() = 'Slider'">
+			<input type="range">
+				<xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
+				<xsl:attribute name="name"><xsl:value-of select="@name"/></xsl:attribute>
+				<xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute>
+				<xsl:attribute name="min"><xsl:value-of select="@min"/></xsl:attribute>
+				<xsl:attribute name="max"><xsl:value-of select="@max"/></xsl:attribute>
+				<xsl:attribute name="step"><xsl:value-of select="@step"/></xsl:attribute>
+			</input>
+		</xsl:when>
+	</xsl:choose>
+</xsl:template>
+
+<xsl:template name="_window-tool">
+	<div>
+		<xsl:if test="@title"><xsl:attribute name="title"><xsl:value-of select="@title"/></xsl:attribute></xsl:if>
+		<xsl:attribute name="class">toolbar-tool_ 
+			<xsl:choose>
+				<xsl:when test="@state = 'active'">toolbar-active_ </xsl:when>
+				<xsl:when test="@state = 'disabled'">win-disabled_ </xsl:when>
+			</xsl:choose>
+			<xsl:if test="@menu"> toolbar-arrow_ </xsl:if>
+			<xsl:value-of select="@class"/>
+		</xsl:attribute>
+		<xsl:if test="@menu">
+			<xsl:attribute name="data-menu">
+				<xsl:value-of select="@menu"/>
+			</xsl:attribute>
+			<div class="chevron-down_"></div>
+		</xsl:if>
+		<xsl:if test="@click">
+			<xsl:attribute name="data-click"><xsl:value-of select="@click"/></xsl:attribute>
+		</xsl:if>
+		<xsl:if test="@arg">
+			<xsl:attribute name="data-arg"><xsl:value-of select="@arg"/></xsl:attribute>
+		</xsl:if>
+		<xsl:if test="@name"><xsl:value-of select="@name"/></xsl:if>
+
+		<xsl:if test="@symbol">
+			<span>
+				<xsl:attribute name="class">tool-icon_ <xsl:value-of select="@symbol"/></xsl:attribute>
+				<xsl:attribute name="style">background-image: url(/app/ant/<xsl:value-of select="ancestor::Application//meta[@name='id']/@value"/>/icons/<xsl:value-of select="@symbol"/>.png)</xsl:attribute>
+			</span>
+		</xsl:if>
+	</div>
+</xsl:template>
+
+<xsl:template name="_window-tabbar">
+	<div class="win-tabbar_" sys-click="do-win-tabs">
+		<xsl:if test="./Head/TabBar[@state = 'hidden'] or count(./Head/TabBar/*) = 0">
+			<xsl:attribute name="class">hidden</xsl:attribute>
+		</xsl:if>
+		<xsl:for-each select="./Head/TabBar/*">
+			<xsl:call-template name="_window-tab"/>
+		</xsl:for-each>
+		<div class="win-tabbar-add_" sys-click="add-win-tab"></div>
+	</div>
+</xsl:template>
+
+<xsl:template name="_window-tab">
+	<div>
+		<xsl:attribute name="class">tabbar-tab_ 
+			<xsl:if test="position() = 1">tabbar-active_</xsl:if>
+			<xsl:if test="position() > 1">tabbar-next-active_</xsl:if>
+		</xsl:attribute>
+		<div class="win-tabbar-close_" sys-click="remove-win-tab"></div>
+		<span><xsl:value-of select="@name"/></span>
+	</div>
+</xsl:template>
+
+
+	
+<xsl:template name="_menu">
+	<div>
+		<xsl:attribute name="class">context-menu_ 
+			<xsl:if test="@type = 'thin'">menu-thin_</xsl:if>
+		</xsl:attribute>
+		<div class="menu-container_">
+			<xsl:for-each select="./*">
+				<xsl:choose>
+					<xsl:when test="@type='divider'"><div class="menu-item-divider_"></div></xsl:when>
+					<xsl:when test="@type='caption'"><div class="menu-item-caption_"><xsl:value-of select="@name"/></div></xsl:when>
+					<xsl:when test="@type='slider'">
+						<div class="menu-slider-wrapper_">
+							<input type="range">
+								<xsl:attribute name="_id"><xsl:value-of select="@_id"/></xsl:attribute>
+								<xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute>
+								<xsl:attribute name="min"><xsl:value-of select="@min"/></xsl:attribute>
+								<xsl:attribute name="max"><xsl:value-of select="@max"/></xsl:attribute>
+								<xsl:attribute name="step"><xsl:value-of select="@step"/></xsl:attribute>
+							</input>
+						</div>
+					</xsl:when>
+					<xsl:when test="@type='colors'">
+						<xsl:if test="@caption"><div class="menu-item-caption_"><xsl:value-of select="@caption"/></div></xsl:if>
+						<div class="menu-colors-wrapper_">
+							<xsl:attribute name="_id"><xsl:value-of select="@_id"/></xsl:attribute>
+							<xsl:for-each select="./Color">
+								<div>
+									<xsl:attribute name="style">background: <xsl:value-of select="@arg"/>;</xsl:attribute>
+									<xsl:attribute name="class">color-select_
+										<xsl:if test="@active = 1">menu-active_</xsl:if>
+									</xsl:attribute>
+									<xsl:attribute name="data-arg"><xsl:value-of select="@arg"/></xsl:attribute>
+								</div>
+							</xsl:for-each>
+						</div>
+					</xsl:when>
+					<xsl:when test="@show-if-group and @is and ancestor::MenuBar//Menu[@check-group = current()/@show-if-group and @arg = current()/@is and not(@is-checked)]">
+						<!-- skip menu item if condition in not met -->
+					</xsl:when>
+					<xsl:otherwise>
+						<div>
+							<xsl:attribute name="_id"><xsl:value-of select="@_id"/></xsl:attribute>
+							<xsl:attribute name="class">menu-item_
+								<xsl:if test="count(./*) &gt; 0 or @invoke"> menu-item-hasSub_</xsl:if>
+								<xsl:if test="@is-checked = '1'"> menu-item-checked_</xsl:if>
+								<xsl:if test="@disabled"> menu-item-disabled_</xsl:if>
+								<xsl:if test="@disable-if and @is and ancestor::MenuBar//Menu[@check-group = current()/@disable-if and @arg = current()/@is and @is-checked = '1']"> menu-item-disabled_</xsl:if>
+							</xsl:attribute><xsl:value-of select="@name"/>
+							<xsl:if test="@is-checked = '1'">
+								<span class="menu-item-check_"></span>
+							</xsl:if>
+							<xsl:if test="count(./*) &gt; 0 or @invoke">
+								<span class="menu-item-arrow-right_"></span>
+							</xsl:if>
+							<xsl:if test="count(./*) = 0 and @hotkey">
+								<span class="menu-item-hotkey_"><xsl:call-template name="_hotkey">
+									<xsl:with-param name="char" select="@hotkey"/>
+								</xsl:call-template></span>
+							</xsl:if>
+						</div>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:for-each>
+		</div>
+	</div>
+</xsl:template>
+
+<xsl:template name="_hotkey">
+	<xsl:param name="char" select="."/>
+	<xsl:if test="string-length($char)">
+		<xsl:choose>
+			<xsl:when test="substring-before(concat($char, '+'), '+') = 'meta'">⌘</xsl:when>
+			<xsl:when test="substring-before(concat($char, '+'), '+') = 'alt'">⌥</xsl:when>
+			<xsl:when test="substring-before(concat($char, '+'), '+') = 'control'">⌃</xsl:when>
+			<xsl:when test="substring-before(concat($char, '+'), '+') = 'shift'">⇧</xsl:when>
+			<xsl:when test="substring-before(concat($char, '+'), '+') = 'escape'">⎋</xsl:when>
+			<xsl:when test="substring-before(concat($char, '+'), '+') = 'backspace'">⌫</xsl:when>
+			<xsl:when test="substring-before(concat($char, '+'), '+') = 'delete'">⌦</xsl:when>
+			<xsl:when test="substring-before(concat($char, '+'), '+') = 'up'">↑</xsl:when>
+			<xsl:when test="substring-before(concat($char, '+'), '+') = 'down'">↓</xsl:when>
+			<xsl:when test="substring-before(concat($char, '+'), '+') = 'left'">←</xsl:when>
+			<xsl:when test="substring-before(concat($char, '+'), '+') = 'right'">→</xsl:when>
+		</xsl:choose>
+		<xsl:call-template name="_hotkey">
+			<xsl:with-param name="char" select="substring-after($char, '+')"/>
+		</xsl:call-template>
+		<xsl:if test="string-length(substring-after($char, '+')) = 1">
+			<xsl:value-of select="translate(substring-after($char, '+'), $lowercase, $uppercase)"/>
+		</xsl:if>
+	</xsl:if>
+</xsl:template>
+
+
+</xsl:stylesheet>
+</ledger>

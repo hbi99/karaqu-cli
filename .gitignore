@@ -1,5 +1,7 @@
 
 node_modules
+lib/server/_cache
+lib/server/public/app
 temp
 
 .env
