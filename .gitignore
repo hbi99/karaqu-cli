@@ -1,7 +1,7 @@
 
 node_modules
 lib/server/_cache
-lib/server/public/app
+lib/server/public
 temp
 
 .env
