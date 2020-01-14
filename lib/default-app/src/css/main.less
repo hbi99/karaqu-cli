@@ -1,0 +1,393 @@
+
+@import url('https://fonts.googleapis.com/css?family=Mystery+Quest&display=swap');
+
+background: #222;
+
+content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 3px;
+	border-radius: inherit;
+
+	.board {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 450px;
+		height: 450px;
+		background: url(~/img/bg.png);
+		border-radius: 1px;
+		font-size: 0;
+		overflow: hidden;
+
+		&:after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			opacity: 0;
+			z-index: 9;
+			background: #000;
+			transition: opacity 300ms linear;
+		}
+
+		&.black-out {
+			&:after {
+				opacity: 1;
+				//transition-duration: 0ms;
+			}
+		}
+	}
+
+	.cover {
+		background: #000;
+		position: absolute;
+		width: 30px;
+		height: 30px;
+		z-index: 8;
+
+		&.uncover[data-num="1"] { animation: uncover 200ms calc(1 * 50ms) linear forwards; }
+		&.uncover[data-num="2"] { animation: uncover 200ms calc(2 * 50ms) linear forwards; }
+		&.uncover[data-num="3"] { animation: uncover 200ms calc(3 * 50ms) linear forwards; }
+		&.uncover[data-num="4"] { animation: uncover 200ms calc(4 * 50ms) linear forwards; }
+		&.uncover[data-num="5"] { animation: uncover 200ms calc(5 * 50ms) linear forwards; }
+		&.uncover[data-num="6"] { animation: uncover 200ms calc(6 * 50ms) linear forwards; }
+		&.uncover[data-num="7"] { animation: uncover 200ms calc(7 * 50ms) linear forwards; }
+		&.uncover[data-num="8"] { animation: uncover 200ms calc(8 * 50ms) linear forwards; }
+		&.uncover[data-num="9"] { animation: uncover 200ms calc(9 * 50ms) linear forwards; }
+		&.uncover[data-num="10"] { animation: uncover 200ms calc(10 * 50ms) linear forwards; }
+		&.uncover[data-num="11"] { animation: uncover 200ms calc(11 * 50ms) linear forwards; }
+		&.uncover[data-num="12"] { animation: uncover 200ms calc(12 * 50ms) linear forwards; }
+		&.uncover[data-num="13"] { animation: uncover 200ms calc(13 * 50ms) linear forwards; }
+		&.uncover[data-num="14"] { animation: uncover 200ms calc(14 * 50ms) linear forwards; }
+		&.uncover[data-num="15"] { animation: uncover 200ms calc(15 * 50ms) linear forwards; }
+	}
+
+	.box {
+		background: url(~/img/box.png) -30px -60px no-repeat;
+		position: absolute;
+		width: 30px;
+		height: 30px;
+		opacity: 1;
+
+		&.player {
+			background: none;
+			z-index: 2;
+			transform: inherit;
+
+			&:not(.exit):before {
+				content: "";
+				position: absolute;
+				top: 2px;
+				left: 2px;
+				right: 2px;
+				bottom: 2px;
+				border-radius: 9px;
+				filter: blur(2px);
+				transform: rotate(45deg);
+				animation: pulsate 1000ms ease-in-out infinite;
+			}
+
+			&:after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: url(~/img/box.png) -30px -60px no-repeat;
+			}
+			
+			&.bounce { animation: bounce 800ms 1000ms ease-in-out forwards; }
+			&.exit { animation: exit 300ms ease-in forwards; }
+
+			&.p1:before { background: #790391; }
+			&.p2:before { background: #12bcf6; }
+			&.p3:before { background: #309103; }
+			&.p4:before { background: #91030a; }
+			&.p5:before { background: #0daa8b; }
+			&.p6:before { background: #944000; }
+		}
+		&.moving {
+			transition: all var(--speed) linear;
+			transition-property: top, left;
+		}
+		&.vanish {
+			transition: all 0ms var(--delay) linear;
+			opacity: 0;
+		}
+		&.bF.exit-open {
+			background: none;
+
+			&:before {
+				content: "";
+				position: absolute;
+				top: 4px;
+				left: 4px;
+				right: 4px;
+				bottom: 4px;
+				animation: rainbow 900ms linear infinite;
+			}
+
+			&:after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: url(~/img/box.png) -30px -60px no-repeat;
+				background-position: -60px -90px;
+			}
+		}
+
+		&.b0 { background-position: 30px 0px; }
+		&.b1 { background-position: 0px 0px; }
+		&.b2 { background-position: -30px 0px; }
+		&.b3 { background-position: -60px 0px; }
+		&.b4 { background-position: -90px 0px; }
+		&.b5 { background-position: -120px 0px; }
+		&.b6 { background-position: -150px 0px; }
+		&.b7 { background-position: 0px -30px; }
+		&.b8 { background-position: -30px -30px; }
+		&.b9 { background-position: -60px -30px; }
+		&.bA { background-position: -90px -30px; }
+		&.bB { background-position: -120px -30px; }
+		&.bC { background-position: -150px -30px; }
+		&.bF { background-position: -30px -90px; }
+
+		&.p1:after { background-position: 0px -60px; }
+		&.p2:after { background-position: -30px -60px; }
+		&.p3:after { background-position: -60px -60px; }
+		&.p4:after { background-position: -90px -60px; }
+		&.p5:after { background-position: -120px -60px; }
+		&.p6:after { background-position: -150px -60px; }
+	}
+
+
+	&.game-won {
+		.congratulations  {
+			opacity: 1;
+			visibility: visible;
+
+			h2 {
+				animation: textBounce 1000ms 1 ease-in-out,
+							textColors 3500ms infinite;
+			}
+			.pyro {
+				> .before,
+				> .after {
+					animation: 1s bang ease-out infinite backwards,
+								1s gravity ease-in infinite backwards,
+								5s position linear infinite backwards;
+				}
+				> .after {
+					animation-delay: 1.25s, 1.25s, 1.25s;
+					animation-duration: 1.25s, 1.25s, 6.25s;
+				}
+			}
+		}
+	}
+
+	&.hide-game-won {
+		.congratulations  {
+			opacity: 0;
+		}
+	}
+
+	.congratulations {
+		opacity: 0;
+		visibility: hidden;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 99;
+		background: rgba(0,0,0,.75);
+		transition: opacity 300ms ease-in-out 100ms;
+		perspective: 100px;
+
+		h2 {
+			position: absolute;
+			top: 35%;
+			width: 100%;
+			text-align: center;
+			font-family: 'Mystery Quest', cursive;
+			font-size: 51px;
+			font-weight: 100;
+			text-shadow: 0 4px 1px rgba(0,0,0,.35); 
+			transform: translateZ(0);
+
+			span {
+				display: block;
+				font-size: 31px;
+				margin-top: 13px;
+			}
+		}
+
+		.pyro {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 100;
+
+			> .before,
+			> .after {
+				position: absolute;
+				width: 5px;
+				height: 5px;
+				border-radius: 50%;
+				.pyroShadowLoop(50);
+			}
+		}
+	}
+}
+
+.pyroShadowLoop(@count) when (@count > 0) {
+    .pyroShadowLoop(@count - 1);
+    box-shadow+: 0 0 #fff;
+}
+
+// copied from: https://codepen.io/yshlin/pen/ylDEk
+@keyframes bang {
+	to {
+		box-shadow: -195px -358.6666666667px #ff3300,
+					-188px 74.3333333333px #9dff00,
+					86px -174.6666666667px #ff001e,
+					-70px -41.6666666667px #7b00ff,
+					199px -331.6666666667px #ff00d5,
+					-70px -103.6666666667px #c4ff00,
+					4px -387.6666666667px #00eeff,
+					-61px -229.6666666667px #ff002f,
+					112px -146.6666666667px #00ffdd,
+					187px 67.3333333333px #ff00b7,
+					-50px -396.6666666667px #5500ff,
+					177px -356.6666666667px #00eeff,
+					-165px -120.6666666667px #ff00b3,
+					151px 37.3333333333px #ff007b,
+					17px -32.6666666667px #00ff26,
+					215px -115.6666666667px #8cff00,
+					-139px -41.6666666667px #77ff00,
+					-84px -100.6666666667px #ff009d,
+					-90px -130.6666666667px #91ff00,
+					-100px -343.6666666667px #2600ff,
+					222px -415.6666666667px #9900ff,
+					-102px -216.6666666667px #ff0051,
+					-135px -414.6666666667px #00ff1e,
+					-130px -80.6666666667px #00ff73,
+					-83px -50.6666666667px #0d00ff,
+					149px -135.6666666667px #002bff,
+					-174px -307.6666666667px #004dff,
+					-155px -252.6666666667px #00ffb3,
+					28px -402.6666666667px #ffd000,
+					-150px -236.6666666667px #00ffd9,
+					249px -164.6666666667px #ff0004,
+					49px -94.6666666667px #1aff00,
+					-216px -98.6666666667px #00ff77,
+					-101px -147.6666666667px #2200ff,
+					240px 1.3333333333px #00ffea,
+					-55px -139.6666666667px #ff5900,
+					-120px 1.3333333333px #ff8800,
+					75px -265.6666666667px #00ffbb,
+					204px -4.6666666667px #ff00ea,
+					-76px -108.6666666667px #0044ff,
+					-180px -48.6666666667px #ff5500,
+					-129px -367.6666666667px #8000ff,
+					-19px -189.6666666667px #91ff00,
+					210px -100.6666666667px #ffc400,
+					-71px -170.6666666667px #00ff33,
+					-155px -117.6666666667px #0091ff,
+					66px -259.6666666667px #00ff9d,
+					98px -3.6666666667px #0026ff,
+					-143px -128.6666666667px #0dff00,
+					127px -47.6666666667px #00b3ff,
+					79px -216.6666666667px #ff00d9;
+	}
+}
+
+@keyframes gravity {
+	to {
+		transform: translateY(200px);
+		opacity: 0;
+	}
+}
+
+@keyframes position {
+	0%,
+	19.9% {
+		margin-top: 10%;
+		margin-left: 40%;
+	}
+	20%,
+	39.9% {
+		margin-top: 40%;
+		margin-left: 30%;
+	}
+	40%,
+	59.9% {
+		margin-top: 20%;
+		margin-left: 70%;
+	}
+	60%,
+	79.9% {
+		margin-top: 30%;
+		margin-left: 20%;
+	}
+	80%,
+	99.9% {
+		margin-top: 30%;
+		margin-left: 80%;
+	}
+}
+
+@keyframes textBounce {
+	  0%, 20%, 50%, 80%, 100% { transform: translateZ(0); }
+	  45% { transform: translateZ(-30px); }
+	  60% { transform: translateZ(-15px); }
+}
+
+@keyframes textColors {
+	100%, 0% { color: #ffb; }
+	20% { color: #fbf; }
+	40% { color: #bff; }
+	60% { color: #bbf; }
+	80% { color: #bfb; }
+}
+
+@keyframes pulsate {
+	0%   { opacity: 0; }
+	50%  { opacity: .65; }
+	100% { opacity: 0; }
+}
+
+@keyframes rainbow {
+	100%,
+	0%  { background: #888; }
+	50% { background: #fff; }
+}
+
+@keyframes exit {
+	0%   { transform: scale(1); }
+	100% { transform: scale(0); }
+}
+
+@keyframes uncover {
+	0%   { transform: scale(1); }
+	100% { transform: scale(0); }
+}
+
+@keyframes bounce {
+	0%   { transform: scale(1); }
+	50%  { transform: scale(2.1); }
+	60%  { transform: scale(0.6); }
+	80%  { transform: scale(0.95); }
+	100% { transform: scale(0.85); }
+}
+
