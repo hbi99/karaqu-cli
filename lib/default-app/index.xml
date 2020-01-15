@@ -3,7 +3,7 @@
 		<meta name="id" value="{{id}}"/>
 		<meta name="title" value="{{name}}" version="1.0"/>
 		<meta name="author" value="{{author}}" namespace="{{username}}"/>
-		<meta name="license" value="{{license}}"/>
+		<meta name="license" value="AGPL-3.0"/>
 		<meta name="width" value="600"/>
 		<meta name="height" value="400"/>
 		<meta name="top" value="120"/>
