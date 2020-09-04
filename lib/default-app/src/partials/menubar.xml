@@ -1,8 +1,6 @@
 <MenuBar>
 	<Menu name="{{name}}">
-		<Menu name="About {{name}}"/>
-		<Menu type="divider"/>
-		<Menu name="New Game" click="restart"/>
+		<Menu name="About {{name}}" shell="win -a"/>
 		<Menu type="divider"/>
 		<Menu name="Hide {{name}}"/>
 		<Menu name="Hide Others"/>
@@ -13,6 +11,6 @@
 	<Menu name="Help">
 		<Menu name="Help" click="open-help"/>
 		<Menu type="divider"/>
-		<Menu name="Source Code"/>
+		<Menu name="License"/>
 	</Menu>
 </MenuBar>
