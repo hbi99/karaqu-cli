@@ -1,6 +1,6 @@
 {
-  "name": "def-ant-cli",
-  "version": "1.3.4",
+  "name": "defiant-cli",
+  "version": "1.3.5",
   "description": "Command Line Interface for Def-ant",
   "main": "./lib",
   "bin": {
@@ -11,16 +11,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hbi99/def-ant-cli.git"
+    "url": "git+https://github.com/hbi99/defiant-cli.git"
   },
   "author": "Hakan Bilgin",
   "license": "AGPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/hbi99/def-ant-cli/issues"
+    "url": "https://github.com/hbi99/defiant-cli/issues"
   },
-  "homepage": "https://github.com/hbi99/def-ant-cli#readme",
+  "homepage": "https://github.com/hbi99/defiant-cli#readme",
   "dependencies": {
-    "ant-app-builder": "^1.5.4",
+    "ant-app-builder": "^1.5.5",
     "body-parser": "^1.19.0",
     "chokidar": "^3.4.2",
     "cli-format": "^3.0.9",
