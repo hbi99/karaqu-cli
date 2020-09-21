@@ -2,10 +2,6 @@
 	<Menu name="{{name}}">
 		<Menu name="About {{name}}" shell="win -a"/>
 		<Menu type="divider"/>
-		<Menu name="Hide {{name}}"/>
-		<Menu name="Hide Others"/>
-		<Menu name="Show All" disabled="1"/>
-		<Menu type="divider"/>
 		<Menu name="Quit {{name}}" shell="win -c"/>
 	</Menu>
 	<Menu name="Help">
