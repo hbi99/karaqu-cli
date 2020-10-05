@@ -1,4 +1,8 @@
 <Settings>
+	<User id="jdoe" name="John Doe"/>
+	<Friends>
+		<!-- friends list -->
+	</Friends>
 	<GuiMenubar>
 		<i id="date-time" value="digital"/>
 		<i id="speakers" value="vol-81"/>
