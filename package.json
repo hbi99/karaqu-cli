@@ -24,12 +24,12 @@
     "chokidar": "^3.4.3",
     "cli-format": "^3.0.9",
     "colors": "^1.4.0",
-    "defiant-builder": "^1.5.6",
+    "defiant-builder": "^1.5.8",
     "dotenv": "^8.2.0",
     "enquirer": "^2.3.6",
     "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
     "open": "^7.2.1",
-    "progress": "^2.0.3",
-    "request": "^2.88.0"
+    "progress": "^2.0.3"
   }
 }
