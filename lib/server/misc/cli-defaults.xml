@@ -1,12 +1,43 @@
 <Settings>
 	<User id="jdoe" name="John Doe"/>
+	
 	<Friends>
 		<!-- friends list -->
 	</Friends>
+
 	<GuiMenubar>
 		<i id="date-time" value="digital"/>
 		<i id="speakers" value="vol-81"/>
 	</GuiMenubar>
+
+	<FsReserved>
+		<i path="/" icon="sidebar-home"/>
+		<i path="/Applications"/>
+		<i path="/Desktop"/>
+		<i path="/Documents"/>
+		<i path="/Downloads"/>
+		<i path="/Mount"/>
+		<i path="/Settings"/>
+		<i path="/Trashcan" icon="trashcan"/>
+	</FsReserved>
+
+	<Finder>
+		<i id="fileView" type="string"><![CDATA[columns]]></i>
+		<i id="defaultPath" type="string"><![CDATA[/fs/]]></i>
+		<i id="iconSize" type="number"><![CDATA[79]]></i>
+		<i id="sidebar" type="xml">
+			<block id="favorites" name="Favorites">
+				<item icon="home" path="/fs/"/>
+				<item icon="desktop" path="/fs/Desktop"/>
+				<item icon="documents" path="/fs/Documents"/>
+				<item icon="applications" path="/fs/Applications"/>
+			</block>
+			<block id="external-storage" name="External Storage">
+				<!-- mounted cloud storage goes here -->
+			</block>
+		</i>
+	</Finder>
+
 	<Desktop>
 		<WorkSpace>
 			<i name="ws-1">
@@ -17,6 +48,19 @@
 		<Dock hidden="true"/>
 		<Icons hidden="true"/>
 	</Desktop>
+
+	<Sidebar>
+		<i id="notification-timer" type="number"><![CDATA[3]]></i>
+		<Widgets>
+			<i name="weather" />
+			<i name="calendar" />
+			<i name="stocks" />
+		</Widgets>
+		<Notifications>
+			<!-- notifications goes here -->
+		</Notifications>
+	</Sidebar>
+
 </Settings>
 
 <FileSystem/>
