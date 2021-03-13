@@ -4,12 +4,13 @@
 	<Friends>
 		<!-- friends list -->
 	</Friends>
-
-	<GuiMenubar>
-		<i id="date-time" value="digital"/>
+	<Language>
+		<i id="lang-locale" value="en-en"/>
+	</Language>
+	<Menubar>
+		<i id="date-time" value="analog"/>
 		<i id="speakers" value="vol-81"/>
-	</GuiMenubar>
-
+	</Menubar>
 	<FsReserved>
 		<i path="/" icon="sidebar-home"/>
 		<i path="/Applications"/>
@@ -17,44 +18,38 @@
 		<i path="/Documents"/>
 		<i path="/Downloads"/>
 		<i path="/Mount"/>
-		<i path="/Settings"/>
+		<i path="/Shared"/>
+		<i path="/Network"/>
+		<i path="/Mount"/>
+		<i path="/Settings" hidden="true"/>
 		<i path="/Trashcan" icon="trashcan"/>
 	</FsReserved>
-
-	<Finder>
-		<i id="fileView" type="string"><![CDATA[columns]]></i>
-		<i id="defaultPath" type="string"><![CDATA[/fs/]]></i>
-		<i id="iconSize" type="number"><![CDATA[79]]></i>
-		<i id="sidebar" type="xml">
-			<block id="favorites" name="Favorites">
-				<item icon="home" path="/fs/"/>
-				<item icon="desktop" path="/fs/Desktop"/>
-				<item icon="documents" path="/fs/Documents"/>
-				<item icon="applications" path="/fs/Applications"/>
-			</block>
-			<block id="external-storage" name="External Storage">
-				<!-- mounted cloud storage goes here -->
-			</block>
-		</i>
-	</Finder>
+	<Entries>
+		<i id="workspace-wallpaper-wide" type="boolean"><![CDATA[false]]></i>
+		<i id="workspace-1-wallpaper" type="string"><![CDATA[background: repeating-linear-gradient(22.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(112.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(67.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(157.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),linear-gradient(90deg, hsl(210,81%,56%),hsl(210,81%,56%));]]></i>
+		<i id="dock-position" type="string"><![CDATA[bottom]]></i>
+		<i id="dock-hidden" type="boolean"><![CDATA[true]]></i>
+		<i id="desktop-icons-hidden" type="boolean"><![CDATA[true]]></i>
+		<i id="ui-theme" type="string"><![CDATA[defiant-light]]></i>
+		<i id="i18n-calendar-months" type="json"><![CDATA[["January","February","March","April","May","June","July","August","September","October","November","December"]]]></i>
+		<i id="i18n-calendar-days" type="json"><![CDATA[["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]]]></i>
+		<i id="i18n-calendar-weekStartsWith" type="number"><![CDATA[1]]></i>
+		<i id="i18n-calendar-hours" type="string"><![CDATA[24h]]></i>
+	</Entries>
 
 	<Desktop>
 		<WorkSpace>
 			<i name="ws-1">
-				<i type="wallpaper"><![CDATA[background: repeating-linear-gradient(22.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(112.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(67.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(157.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),linear-gradient(90deg, hsl(210,81%,56%),hsl(210,81%,56%));]]></i>
-				<i type="app" id="{{app-id}}"/>
+				<i type="app" ns="{{app-ns}}" id="{{app-id}}"/>
 			</i>
 		</WorkSpace>
-		<Dock hidden="true"/>
-		<Icons hidden="true"/>
+		<Dock/>
+		<Icons/>
 	</Desktop>
 
 	<Sidebar>
-		<i id="notification-timer" type="number"><![CDATA[3]]></i>
 		<Widgets>
-			<i name="weather" />
-			<i name="calendar" />
-			<i name="stocks" />
+			<!-- widgets goes here -->
 		</Widgets>
 		<Notifications>
 			<!-- notifications goes here -->

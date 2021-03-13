@@ -1,0 +1,11 @@
+<ToolBar>
+	<Group>
+		<Options>
+			<Tool symbol="icon-arrow-left"/>
+			<Tool symbol="icon-arrow-right"/>
+		</Options>
+	</Group>
+	<Group width="31%">
+		<Search placeholder="Search"/>
+	</Group>
+</ToolBar>
