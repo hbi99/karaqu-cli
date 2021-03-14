@@ -33,16 +33,16 @@
 
 	<!-- filesystem -->
 	<FileSystem name="jdoe" quota="1073741824" kind="_dir" size="4" mTime="1609335522097" mode="d755">
-		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Applications">
-		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Desktop">
-		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Documents">
-		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Downloads">
-		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Mount">
-		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Shared">
-		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Network">
-		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Mount">
-		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Settings">
-		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Trashcan">
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Applications"/>
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Desktop"/>
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Documents"/>
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Downloads"/>
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Mount"/>
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Shared"/>
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Network"/>
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Mount"/>
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Settings"/>
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Trashcan"/>
 	</FileSystem>
 
 	<!-- settings -->
