@@ -7,10 +7,10 @@
 	<Language>
 		<i id="lang-locale" value="en-en"/>
 	</Language>
-	<Menubar>
+	<!-- <Menubar>
 		<i id="date-time" value="analog"/>
 		<i id="speakers" value="vol-81"/>
-	</Menubar>
+	</Menubar> -->
 	<FsReserved>
 		<i path="/" icon="sidebar-home"/>
 		<i path="/Applications"/>
@@ -57,5 +57,3 @@
 	</Sidebar>
 
 </Settings>
-
-<FileSystem/>

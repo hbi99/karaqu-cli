@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ledger xmlns:ant="defiantsystem.com" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<details>
+		<meta name="system" value="Defiant System" version="<%= version %>" buildDate="<%= buildDate %>"/>
+		<meta name="company" value="Defiant System AB"/>
+		<meta name="author" value="Hakan Bilgin" email="hbi@longscript.com"/>
+		<meta name="screen" width="1000" height="1000"/>
+		<meta name="theme" value="light"/>
+	</details>
+
+	<applications/>
+	<dfs/>
+	<Spotlight />
+	<CloudStorages />
+	<svg width="0" height="0" />
+
+	<Settings>
+		<User id="jdoe" name="John Doe"/>
+		<Friends>
+			<!-- friends list -->
+		</Friends>
+		<Language>
+			<i id="lang-locale" value="en-en"/>
+		</Language>
+		<Menubar>
+			<i id="date-time" value="analog"/>
+			<i id="speakers" value="vol-81"/>
+		</Menubar>
+		<FsReserved />
+		<Entries>
+			<i id="workspace-wallpaper-wide" type="boolean"><![CDATA[false]]></i>
+			<i id="workspace-1-wallpaper" type="string"><![CDATA[background: repeating-linear-gradient(22.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(112.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(67.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(157.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),linear-gradient(90deg, hsl(210,81%,56%),hsl(210,81%,56%));]]></i>
+			<i id="dock-position" type="string"><![CDATA[bottom]]></i>
+			<i id="dock-hidden" type="boolean"><![CDATA[true]]></i>
+			<i id="desktop-icons-hidden" type="boolean"><![CDATA[true]]></i>
+			<i id="ui-theme" type="string"><![CDATA[defiant-light]]></i>
+			<i id="i18n-calendar-months" type="json"><![CDATA[["January","February","March","April","May","June","July","August","September","October","November","December"]]]></i>
+			<i id="i18n-calendar-days" type="json"><![CDATA[["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]]]></i>
+			<i id="i18n-calendar-weekStartsWith" type="number"><![CDATA[1]]></i>
+			<i id="i18n-calendar-hours" type="string"><![CDATA[24h]]></i>
+		</Entries>
+
+		<Desktop>
+			<WorkSpace>
+				<i name="ws-1">
+					<i type="app" ns="{{app-ns}}" id="{{app-id}}"/>
+				</i>
+			</WorkSpace>
+			<Dock/>
+			<Icons/>
+		</Desktop>
+
+		<Sidebar>
+			<Widgets />
+			<Notifications />
+		</Sidebar>
+
+	</Settings>
+</ledger>
