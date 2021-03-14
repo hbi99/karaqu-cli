@@ -1,19 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ledger xmlns:ant="defiantsystem.com" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<details>
-		<meta name="system" value="Defiant System" version="<%= version %>" buildDate="<%= buildDate %>"/>
-		<meta name="company" value="Defiant System AB"/>
-		<meta name="author" value="Hakan Bilgin" email="hbi@longscript.com"/>
-		<meta name="screen" width="1000" height="1000"/>
-		<meta name="theme" value="light"/>
-	</details>
 
 	<applications/>
 	<dfs/>
 	<Spotlight />
 	<CloudStorages />
-	<svg width="0" height="0" />
+	<svg width="0" height="0">{{svg-icons}}</svg>
 
+	<!-- context menu -->
+	<ContextMenu>
+		<MenuBar for="system">
+			<Group>
+				<Menu icon="icon-def-ant" name="Defiant">
+					<Menu name="About Defiant" shell="sys -c"/>
+				</Menu>
+			</Group>
+			<Group>
+				<Menu icon="icon-clock" class="menubar-date-time_">
+					<Menu name="View as Analogue" shell="sys -m clock analog" check-group="menubar-clock"/>
+					<Menu name="View as Digital" shell="sys -m clock digital" check-group="menubar-clock" is-checked="1"/>
+				</Menu>
+			</Group>
+		</MenuBar>
+
+		<Menu for="desktop">
+			<Menu name="Reload" shell="sys -r"/>
+			<Menu type="divider"/>
+			<Menu name="Desktop Settings" shell="win -o preferences desktop"/>
+		</Menu>
+
+	</ContextMenu>
+
+	<!-- i18n -->
+	<i18n />
+
+	<!-- filesystem -->
+	<FileSystem />
+
+	<!-- settings -->
 	<Settings>
 		<User id="jdoe" name="John Doe"/>
 		<Friends>
@@ -22,11 +46,6 @@
 		<Language>
 			<i id="lang-locale" value="en-en"/>
 		</Language>
-		<Menubar>
-			<i id="date-time" value="analog"/>
-			<i id="speakers" value="vol-81"/>
-		</Menubar>
-		<FsReserved />
 		<Entries>
 			<i id="workspace-wallpaper-wide" type="boolean"><![CDATA[false]]></i>
 			<i id="workspace-1-wallpaper" type="string"><![CDATA[background: repeating-linear-gradient(22.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(112.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(67.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(157.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),linear-gradient(90deg, hsl(210,81%,56%),hsl(210,81%,56%));]]></i>
