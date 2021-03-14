@@ -2,9 +2,7 @@
 <ledger xmlns:ant="defiantsystem.com" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<applications/>
-	<dfs/>
-	<Spotlight />
-	<CloudStorages />
+	
 	<svg width="0" height="0">{{svg-icons}}</svg>
 
 	<!-- context menu -->
@@ -72,6 +70,15 @@
 			<i id="i18n-calendar-days" type="json"><![CDATA[["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]]]></i>
 			<i id="i18n-calendar-weekStartsWith" type="number"><![CDATA[1]]></i>
 			<i id="i18n-calendar-hours" type="string"><![CDATA[24h]]></i>
+			<i id="fs-sidebar-favorites" type="raw-xml">
+				<item icon="home" path="/fs/"/>
+				<item icon="desktop" path="/fs/Desktop"/>
+				<item icon="documents" path="/fs/Documents"/>
+				<item icon="applications" path="/fs/Applications"/>
+				<item icon="network" path="/fs/Network"/>
+				<item icon="folder" path="/fs/Desktop/mp3"/>
+			</i>
+			<i id="fs-cloud-storage" type="raw-xml"/>
 		</Entries>
 
 		<Desktop>
@@ -80,14 +87,7 @@
 					<i type="app" ns="{{app-ns}}" id="{{app-id}}"/>
 				</i>
 			</WorkSpace>
-			<Dock/>
-			<Icons/>
 		</Desktop>
-
-		<Sidebar>
-			<Widgets />
-			<Notifications />
-		</Sidebar>
 
 	</Settings>
 </ledger>
