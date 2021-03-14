@@ -28,14 +28,24 @@
 			<Menu type="divider"/>
 			<Menu name="Desktop Settings" shell="win -o preferences desktop"/>
 		</Menu>
-
 	</ContextMenu>
 
 	<!-- i18n -->
-	<i18n />
+	<i18n>{{i18n}}</i18n>
 
 	<!-- filesystem -->
-	<FileSystem />
+	<FileSystem name="jdoe" quota="1073741824" kind="_dir" size="4" mTime="1609335522097" mode="d755">
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Applications">
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Desktop">
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Documents">
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Downloads">
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Mount">
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Shared">
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Network">
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Mount">
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Settings">
+		<i mode="d755" mStamp="1609335522097" kind="_dir" name="Trashcan">
+	</FileSystem>
 
 	<!-- settings -->
 	<Settings>
@@ -53,6 +63,11 @@
 			<i id="dock-hidden" type="boolean"><![CDATA[true]]></i>
 			<i id="desktop-icons-hidden" type="boolean"><![CDATA[true]]></i>
 			<i id="ui-theme" type="string"><![CDATA[defiant-light]]></i>
+			<i id="finder-default-path" type="string"><![CDATA[/fs/Mount/]]></i>
+			<i id="finder-file-view" type="string"><![CDATA[columns]]></i>
+			<i id="finder-icon-size" type="number"><![CDATA[79]]></i>
+			<i id="fs-dialog-style" type="string"><![CDATA[expanded]]></i>
+			<i id="fs-show-hidden-folders" type="boolean"><![CDATA[false]]></i>
 			<i id="i18n-calendar-months" type="json"><![CDATA[["January","February","March","April","May","June","July","August","September","October","November","December"]]]></i>
 			<i id="i18n-calendar-days" type="json"><![CDATA[["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]]]></i>
 			<i id="i18n-calendar-weekStartsWith" type="number"><![CDATA[1]]></i>
