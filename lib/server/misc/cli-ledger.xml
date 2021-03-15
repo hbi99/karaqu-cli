@@ -26,7 +26,7 @@
 		<Friends>
 			<!-- friends list -->
 		</Friends>
-		<Entries>
+		<Registry>
 			<i id="workspace-wallpaper-wide" type="boolean"><![CDATA[false]]></i>
 			<i id="workspace-1-wallpaper" type="string"><![CDATA[background: repeating-linear-gradient(22.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(112.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(67.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(157.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),linear-gradient(90deg, hsl(210,81%,56%),hsl(210,81%,56%));]]></i>
 			<i id="dock-position" type="string"><![CDATA[bottom]]></i>
@@ -48,7 +48,7 @@
 				<item icon="documents" path="/fs/Documents"/>
 				<item icon="applications" path="/fs/Applications"/>
 			</i>
-		</Entries>
+		</Registry>
 		<WorkSpace>
 			<i name="ws-1">
 				<i type="app" ns="{{app-ns}}" id="{{app-id}}"/>
