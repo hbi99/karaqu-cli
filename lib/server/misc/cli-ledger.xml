@@ -61,7 +61,15 @@
 		<MenuBar for="system">
 			<Group>
 				<Menu icon="icon-def-ant" name="Defiant">
-					<Menu name="About Defiant" shell="sys -c"/>
+					<Menu name="About Defiant"/>
+					<Menu type="divider"/>
+					<Menu name="Theme&#8230;" for="ui-theme">
+						<Menu name="Light" shell="sys -o defiant-light" check-group="ui-theme" is-checked="1"/>
+						<Menu name="Dark" shell="sys -o defiant-dark" check-group="ui-theme"/>
+						<Menu name="Olive" shell="sys -o defiant-olive" check-group="ui-theme"/>
+					</Menu>
+					<Menu type="divider"/>
+					<Menu name="Quit"/>
 				</Menu>
 			</Group>
 			<Group>
@@ -75,7 +83,9 @@
 		<Menu for="desktop">
 			<Menu name="Reload" shell="sys -r"/>
 			<Menu type="divider"/>
-			<Menu name="Desktop Settings" shell="win -o preferences desktop"/>
+			<Menu name="Theme&#8230;" invoke="ui-theme"/>
+			<Menu type="divider"/>
+			<Menu name="Quit"/>
 		</Menu>
 	</ContextMenu>
 
