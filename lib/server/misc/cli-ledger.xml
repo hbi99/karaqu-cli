@@ -33,7 +33,7 @@
 			<i id="dock-hidden" type="boolean"><![CDATA[true]]></i>
 			<i id="desktop-icons-hidden" type="boolean"><![CDATA[true]]></i>
 			<i id="ui-theme" type="string"><![CDATA[defiant-light]]></i>
-			<i id="finder-default-path" type="string"><![CDATA[/fs/Mount/]]></i>
+			<i id="finder-default-path" type="string"><![CDATA[/fs/]]></i>
 			<i id="finder-file-view" type="string"><![CDATA[columns]]></i>
 			<i id="finder-icon-size" type="number"><![CDATA[79]]></i>
 			<i id="fs-dialog-style" type="string"><![CDATA[expanded]]></i>
