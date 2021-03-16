@@ -10,6 +10,9 @@
 	<!-- i18n -->
 	<i18n>{{i18n}}</i18n>
 
+	<!-- mimetypes -->
+	<Mime>{{mime-types}}</Mime>
+
 	<!-- filesystem -->
 	<FileSystem name="jdoe" quota="1073741824" kind="_dir" size="4" mode="d755">
 		<i mode="d755" kind="_dir" path="Desktop/"/>
@@ -55,37 +58,6 @@
 			</i>
 		</WorkSpace>
 	</Settings>
-
-	<!-- mimetypes -->
-	<Mime>
-		<i id="_dir" type="defiant/folder" icon="folder" name="Folder"/>
-		<i id="app" type="application/defiant-x" icon="app-icon" name="Application"/>
-		<i id="md" type="text/markdown" icon="md" name="Markdown"/>
-		<i id="man" type="text/markdown" icon="man" name="Manual"/>
-		<i id="txt" type="text/plain" icon="text" name="Text"/>
-		<i id="rtf" type="application/rtf" icon="text" name="RTF"/>
-		<i id="js" type="text/javascript" icon="js" name="Javascript"/>
-		<i id="json" type="application/json" icon="json" name="Json"/>
-		<i id="mov" type="video/quicktime" icon="movie" name="Movie"/>
-		<i id="mp3" type="audio/mpeg" icon="mp3" name="Mp3"/>
-		<i id="mid" type="audio/midi" icon="mp3" name="Midi"/>
-		<i id="css" type="text/css" icon="json" name="CSS"/>
-		<i id="less" type="text/plain" icon="json" name="Less"/>
-		<i id="htm" type="text/html" icon="html" name="Html"/>
-		<i id="html" type="text/html" icon="html" name="Html"/>
-		<i id="svg" type="image/svg+xml" icon="xml" name="SVG"/>
-		<i id="xml" type="application/xml" icon="xml" name="XML"/>
-		<i id="xsl" type="text/xsl" icon="xml" name="XSL"/>
-		<i id="pdf" type="application/pdf" icon="pdf" name="Pdf"/>
-		<i id="gif" type="image/gif" icon="image" name="GIF"/>
-		<i id="png" type="image/png" icon="image" name="PNG"/>
-		<i id="jpg" type="image/jpeg" icon="image" name="JPG"/>
-		<i id="jpeg" type="image/jpeg" icon="image" name="JPEG"/>
-		<i id="webp" type="image/webp" icon="image" name="WebP"/>
-		<i id="xls" type="application/vnd.ms-excel" icon="xls" name="Excell"/>
-		<i id="zip" type="application/zip" icon="zip" name="Zip"/>
-		<i id="gdm" type="" icon="gdm" name="Google Drive Misc"/>
-	</Mime>
 
 	<!-- context menu -->
 	<ContextMenu>
