@@ -12,12 +12,12 @@
 
 	<!-- filesystem -->
 	<FileSystem name="jdoe" quota="1073741824" kind="_dir" size="4" mode="d755">
-		<i mode="d755" kind="_dir" name="Desktop"/>
-		<i mode="d755" kind="_dir" name="Documents"/>
-		<i mode="d755" kind="_dir" name="Downloads"/>
-		<i mode="d755" kind="_dir" name="Mount"/>
-		<i mode="d755" kind="_dir" name="Settings"/>
-		<i mode="d755" kind="_dir" name="Trashcan"/>
+		<i mode="d755" kind="_dir" path="Desktop/"/>
+		<i mode="d755" kind="_dir" path="Documents/"/>
+		<i mode="d755" kind="_dir" path="Downloads/"/>
+		<i mode="d755" kind="_dir" path="Mount/"/>
+		<i mode="d755" kind="_dir" path="Settings/"/>
+		<i mode="d755" kind="_dir" path="Trashcan/"/>
 	</FileSystem>
 
 	<!-- settings -->
