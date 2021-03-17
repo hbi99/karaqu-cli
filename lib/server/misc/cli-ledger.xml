@@ -13,6 +13,9 @@
 	<!-- mimetypes -->
 	<Mime>{{mime-types}}</Mime>
 
+	<!-- shellmap -->
+	<Shell>{{shell-map}}</Shell>
+
 	<!-- filesystem -->
 	<FileSystem name="jdoe" quota="1073741824" kind="_dir" size="4" mode="d755">
 		<i mode="d755" kind="_dir" path="Desktop/"/>
@@ -27,7 +30,10 @@
 	<Settings>
 		<User id="jdoe" name="John Doe"/>
 		<Friends>
-			<!-- friends list -->
+			<!-- temp friends list -->
+			<User id="bill" name="Bill Gates"/>
+			<User id="steve" name="Steve Jobs"/>
+			<User id="jeff" name="Jeff Bezos"/>
 		</Friends>
 		<Registry>
 			<i id="workspace-wallpaper-wide" type="boolean"><![CDATA[false]]></i>
@@ -91,61 +97,4 @@
 			<Menu name="Quit"/>
 		</Menu>
 	</ContextMenu>
-
-	<!-- shell -->
-	<Shell>
-		<i object="sys" path="defiant_" type="System" description="System Object">
-			<i switch="a" name="desktop_.selectAll_" arg="NONE" description="Select all files on desktop."/>
-			<i switch="b" name="manager_.info_" arg="NONE" description="Returns system info."/>
-			<i switch="c" name="manager_.about_" arg="NONE" description="Opens application about Defiant."/>
-			<i switch="d" name="dock_.position_" arg="[left|bottom|right]" description="Positions dock."/>
-			<i switch="h" name="dock_.showHide_" arg="[true|false]" description="Toggles dock."/>
-			<i switch="i" name="desktop_.updateIconColor_" arg="NONE" description="Set folder icon color desktop."/>
-			<i switch="m" name="menuBar_.settings_" arg="clock [digital|analog]" description="Changes menubar clock style."/>
-			<i switch="n" name="sideBar_.toggleView_" arg="[true|false]" description="Toggle sidebar view."/>
-			<i switch="o" name="desktop_.switchTheme_" arg="[name]" description="Switches UI theme."/>
-			<i switch="p" name="shell_.parseCommand_" arg="[stdIn]" description="Parses given string as Shell command."/>
-			<i switch="s" name="spotlight_.toggleSearch_" arg="NONE" description="Toggle spotlight search."/>
-			<i switch="t" name="desktop_.toggleIcons_" arg="[true|false]" description="Toggle icons on desktop."/>
-			<i switch="v" name="menuBar_.updateVolume_" arg="[1-10]" description="Changes system volume."/>
-			<i switch="x" name="manager_.logoutUser_" arg="NONE" description="Logout user."/>
-		</i>
-		<i object="win" path="defiant_.window_" type="Window" description="Controls Windows and Applications">
-			<i switch="a" name="about_" arg="[id]" description="Shows info about application."/>
-			<i switch="o" name="open_" arg="[id]" description="Opens application."/>
-			<i switch="c" name="close_" arg="[id]" description="Closes window."/>
-			<i switch="s" name="updateState_" arg="state [id]" description="Changes window state; min|max|restore."/>
-		</i>
-		<i object="fs" path="defiant_.fileSystem_" type="Filesystem" description="Filesystem Interface">
-			<i switch="j" name="path_.join_" arg="[path, path]" description="Joins paths."/>
-			<i switch="i" name="diskInfo_" arg="NONE" description="Returns user disk information."/>
-			<i switch="l" name="list_" hidden="1" arg="[path]" description="Returns folder contents as object."/>
-			<i switch="p" name="previewFile_" arg="[file]" description="Returns a preview of file, if small."/>
-			<i switch="r" name="readFile_" arg="[file]" description="Returns file."/>
-			<i switch="s" name="writeFile_" arg="[file, data, overwrite]" description="Saves file to filesystem."/>
-			<i switch="d" name="deleteItem_" arg="[file]" description="Moves item to filesystem trashcan."/>
-			<i switch="y" name="copyItem_" arg="[src, target]" description="Copy item to new path."/>
-			<i switch="c" name="makeDir_" arg="[path]" description="Creates folder in filesystem."/>
-			<i switch="e" name="emptyTrashcan_" arg="NONE" description="Empties filesystem trashcan."/>
-			<i switch="m" name="moveItem_" arg="[old, new]" description="Move / rename  item in filesystem."/>
-			<i switch="o" name="open_" arg="[file]" description="Opens file in associated app."/>
-			<i switch="u" name="openUrl_" arg="[url]" description="Fetches URL, returns like file."/>
-			<i switch="n" name="sync_" arg="NONE" alias="sync" description="Syncs files to server, if any in offline cache."/>
-			<i switch="x" name="unzip_" arg="[src, target]" description="Uncompresses a zip file."/>
-			<i switch="z" name="zip_" arg="[target, src]" description="Compresses file(s)."/>
-		</i>
-		<i object="ws" path="defiant_.workSpace_" type="Workspace" description="Workspace API">
-			<i switch="a" name="getAllWs_" arg="[type]" description="Returns all wallpapers."/>
-			<i switch="w" name="wallpaper_" arg="[id, [bg]]" description="Sets / gets background of given workspace."/>
-			<i switch="s" name="switchTo_" arg="[int]" description="Switches to workspace."/>
-		</i>
-		<i object="user" path="defiant_.user_" type="User" description="User related details.">
-			<i switch="i" name="info_" arg="[username]" alias="whoami" description="Info about user."/>
-			<i switch="m" name="message_" arg="[user, string]" description="Sends message to user."/>
-			<i switch="f" name="friends_" arg="NONE" description="List of current user friends."/>
-			<i switch="p" name="approveFriend_" arg="[object]" description="Approve friend request."/>
-			<i switch="a" name="addFriend_" arg="[username]" description="Add friend."/>
-			<i switch="r" name="removeFriend_" arg="[username]" description="Remove friend."/>
-		</i>
-	</Shell>
 </ledger>
