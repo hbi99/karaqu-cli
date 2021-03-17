@@ -1,8 +1,8 @@
 <ToolBar>
-	<Group>
+	<Group width="69%">
 		<Options>
-			<Tool symbol="icon-arrow-left"/>
-			<Tool symbol="icon-arrow-right"/>
+			<Tool symbol="icon-chevron-left"/>
+			<Tool symbol="icon-chevron-right"/>
 		</Options>
 	</Group>
 	<Group width="31%">
