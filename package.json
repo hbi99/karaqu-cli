@@ -1,6 +1,6 @@
 {
   "name": "defiant-cli",
-  "version": "1.5.6",
+  "version": "1.5.7",
   "description": "Command Line Interface for Defiant",
   "main": "./lib",
   "bin": {
