@@ -24,7 +24,7 @@
     "chokidar": "^3.4.3",
     "cli-format": "^3.0.9",
     "colors": "^1.4.0",
-    "defiant-builder": "^1.8.8",
+    "defiant-builder": "^1.8.9",
     "dotenv": "^8.2.0",
     "enquirer": "^2.3.6",
     "express": "^4.17.1",
