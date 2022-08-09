@@ -1,5 +1,5 @@
 {
-  "name": "defiant-cli",
+  "name": "karaqu-cli",
   "version": "1.6.1",
   "description": "Command Line Interface for Defiant",
   "main": "./lib",
@@ -11,20 +11,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hbi99/defiant-cli.git"
+    "url": "git+https://github.com/hbi99/karaqu-cli.git"
   },
   "author": "Hakan Bilgin",
   "license": "AGPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/hbi99/defiant-cli/issues"
+    "url": "https://github.com/hbi99/karaqu-cli/issues"
   },
-  "homepage": "https://github.com/hbi99/defiant-cli#readme",
+  "homepage": "https://github.com/hbi99/karaqu-cli#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "chokidar": "^3.4.3",
     "cli-format": "^3.0.9",
     "colors": "^1.4.0",
-    "defiant-builder": "^1.9.3",
+    "karaqu-builder": "^1.9.3",
     "dotenv": "^8.2.0",
     "enquirer": "^2.3.6",
     "express": "^4.17.1",

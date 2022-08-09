@@ -1,1 +1,1 @@
-# defiant-cli
+# karaqu-cli
