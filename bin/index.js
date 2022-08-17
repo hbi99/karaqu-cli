@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 "use strict";
 
-let defiant = require("../lib")
-let aliases = defiant.aliases()
+let karaqu = require("../lib")
+let aliases = karaqu.aliases()
 let args = process.argv.splice(2)
 let cmd = aliases[args[0]] ? args[0] : false
 
@@ -14,7 +14,7 @@ if (!cmd) {
 }
 
 // command not found - show help
-if (!cmd) return defiant.help()
+if (!cmd) return karaqu.help()
 
 // call function and pass on arguments
-defiant[cmd].apply(defiant, args.slice(1))
+karaqu[cmd].apply(karaqu, args.slice(1))

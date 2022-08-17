@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ledger xmlns:ant="defiantsystem.com" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<ledger xmlns:ant="karaqu.com" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<!-- app cache -->
 	<applications/>
@@ -41,7 +41,7 @@
 			<i id="dock-position" type="string"><![CDATA[bottom]]></i>
 			<i id="dock-hidden" type="boolean"><![CDATA[true]]></i>
 			<i id="desktop-icons-hidden" type="boolean"><![CDATA[true]]></i>
-			<i id="ui-theme" type="string"><![CDATA[defiant-light]]></i>
+			<i id="ui-theme" type="string"><![CDATA[karaqu-light]]></i>
 			<i id="finder-default-path" type="string"><![CDATA[/fs/]]></i>
 			<i id="finder-file-view" type="string"><![CDATA[columns]]></i>
 			<i id="finder-icon-size" type="number"><![CDATA[79]]></i>
@@ -69,13 +69,12 @@
 	<ContextMenu>
 		<MenuBar for="system">
 			<Group>
-				<Menu icon="icon-def-ant" name="Defiant">
-					<Menu name="About Defiant"/>
+				<Menu icon="icon-karaqu" name="Karaqu">
+					<Menu name="About Karaqu"/>
 					<Menu type="divider"/>
 					<Menu name="Theme&#8230;" for="ui-theme">
-						<Menu name="Light" shell="sys -o defiant-light" check-group="ui-theme" is-checked="1"/>
-						<Menu name="Dark" shell="sys -o defiant-dark" check-group="ui-theme"/>
-						<Menu name="Olive" shell="sys -o defiant-olive" check-group="ui-theme"/>
+						<Menu name="Light" shell="sys -o karaqu-light" check-group="ui-theme" is-checked="1"/>
+						<Menu name="Dark" shell="sys -o karaqu-dark" check-group="ui-theme"/>
 					</Menu>
 					<Menu type="divider"/>
 					<Menu name="Quit"/>
