@@ -28,7 +28,7 @@
     "enquirer": "^2.3.6",
     "express": "^4.17.1",
     "form-data": "^3.0.0",
-    "karaqu-builder": "^0.9.5",
+    "karaqu-builder": "^0.9.6",
     "node-fetch": "^2.6.1",
     "open": "^7.2.1",
     "progress": "^2.0.3"
