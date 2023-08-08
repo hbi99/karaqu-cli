@@ -1,6 +1,6 @@
 {
   "name": "karaqu-cli",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "description": "Command Line Interface for Karaqu",
   "main": "./lib",
   "bin": {
@@ -28,7 +28,7 @@
     "enquirer": "^2.3.6",
     "express": "^4.17.1",
     "form-data": "^3.0.0",
-    "karaqu-builder": "^0.9.7",
+    "karaqu-builder": "^0.9.8",
     "node-fetch": "^2.6.1",
     "open": "^7.2.1",
     "progress": "^2.0.3"
