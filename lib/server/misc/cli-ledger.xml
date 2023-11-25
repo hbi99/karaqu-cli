@@ -38,15 +38,18 @@
 		<Registry>
 			<i id="workspace-wallpaper-wide" type="boolean"><![CDATA[false]]></i>
 			<i id="workspace-1-wallpaper" type="string"><![CDATA[background: repeating-linear-gradient(22.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(112.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(67.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(157.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),linear-gradient(90deg, hsl(210,81%,56%),hsl(210,81%,56%));]]></i>
-			<i id="dock-position" type="string"><![CDATA[bottom]]></i>
-			<i id="dock-hidden" type="boolean"><![CDATA[true]]></i>
-			<i id="desktop-icons-hidden" type="boolean"><![CDATA[true]]></i>
-			<i id="ui-theme" type="string"><![CDATA[karaqu-light]]></i>
-			<i id="finder-default-path" type="string"><![CDATA[/fs/]]></i>
-			<i id="finder-file-view" type="string"><![CDATA[columns]]></i>
-			<i id="finder-icon-size" type="number"><![CDATA[79]]></i>
+			<i id="folder-color" type="string"><![CDATA[#157efb]]></i>
+			<i id="screen-saver-enabled" type="boolean"><![CDATA[true]]></i>
+			<i id="screen-saver-time" type="number"><![CDATA[10]]></i>
+			<i id="screen-saver-name" type="string"><![CDATA[Colorful Ring]]></i>
+			<i id="ui" type="json"><![CDATA[{"theme":"royale-beige","theme-extras":"0","accent-color":"#f5822e"}]]></i>
+			<i id="finder-default-path" type="string"><![CDATA[/fs/Desktop]]></i>
+			<i id="finder-file-view" type="string"><![CDATA[icons]]></i>
+			<i id="finder-icon-size" type="number"><![CDATA[77]]></i>
+			<i id="fs-dialog-file-view" type="string"><![CDATA[columns]]></i>
 			<i id="fs-dialog-style" type="string"><![CDATA[expanded]]></i>
-			<i id="fs-show-hidden-folders" type="boolean"><![CDATA[false]]></i>
+			<i id="fs-show-hidden-folders" type="boolean"><![CDATA[true]]></i>
+			<i id="lang-locale" type="string"><![CDATA[en-en]]></i>
 			<i id="i18n-calendar-months" type="json"><![CDATA[["January","February","March","April","May","June","July","August","September","October","November","December"]]]></i>
 			<i id="i18n-calendar-days" type="json"><![CDATA[["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]]]></i>
 			<i id="i18n-calendar-weekStartsWith" type="number"><![CDATA[1]]></i>
@@ -56,7 +59,23 @@
 				<item icon="desktop" path="/fs/Desktop"/>
 				<item icon="documents" path="/fs/Documents"/>
 				<item icon="applications" path="/fs/Applications"/>
+				<item icon="network" path="/fs/Network"/>
 			</i>
+			<i id="dock-3d-on" type="boolean"><![CDATA[false]]></i>
+			<i id="dock-app-indicators" type="boolean"><![CDATA[true]]></i>
+			<i id="dock-magnification-on" type="boolean"><![CDATA[false]]></i>
+			<i id="dock-magnification-size" type="number"><![CDATA[33]]></i>
+			<i id="dock-auto-show-hide" type="boolean"><![CDATA[false]]></i>
+			<i id="dock-position" type="string"><![CDATA[bottom]]></i>
+			<i id="dock-size" type="number"><![CDATA[55]]></i>
+			<i id="menubar-clock" type="string"><![CDATA[digital]]></i>
+			<i id="menubar-volume" type="number"><![CDATA[24]]></i>
+			<i id="menubar-hide-show" type="boolean"><![CDATA[false]]></i>
+			<i id="menubar-dateTime-toggle" type="boolean"><![CDATA[true]]></i>
+			<i id="menubar-dateTime-format" type="string"><![CDATA[ddd DD MMM HH:mm]]></i>
+			<i id="sys-date-time-diff" type="number"><![CDATA[-1368]]></i>
+			<i id="sys-time-zone" type="string"><![CDATA[+02:00]]></i>
+			<i id="workspace-wp-logo" type="string"><![CDATA[ctr,1,1,1,120deg]]></i>
 		</Registry>
 		<WorkSpace>
 			<i name="ws-1">
