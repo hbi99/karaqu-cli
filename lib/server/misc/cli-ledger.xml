@@ -16,6 +16,9 @@
 	<!-- shellmap -->
 	<Shell>{{shell-map}}</Shell>
 
+	<!-- mimetypes -->
+	<OfflineMq><![CDATA[]]></OfflineMq>
+
 	<!-- filesystem -->
 	<FileSystem name="jdoe" quota="1073741824" kind="_dir" size="4" mode="d755">
 		<i mode="d755" kind="_dir" path="Desktop/"/>
@@ -33,11 +36,14 @@
 			<!-- temp friends list -->
 			<User id="bill" name="Bill Gates"/>
 			<User id="steve" name="Steve Jobs"/>
-			<User id="jeff" name="Jeff Bezos"/>
+			<User id="linus" name="Linus Torvalds"/>
 		</Friends>
 		<Registry>
-			<i id="workspace-wallpaper-wide" type="boolean"><![CDATA[false]]></i>
-			<i id="workspace-1-wallpaper" type="string"><![CDATA[background: repeating-linear-gradient(22.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(112.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(67.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(157.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),linear-gradient(90deg, hsl(210,81%,56%),hsl(210,81%,56%));]]></i>
+			<i id="wp-wide" type="string"><![CDATA[]]></i>
+			<i id="wp-1" type="string"><![CDATA[background: repeating-linear-gradient(22.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(112.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(67.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(157.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),linear-gradient(90deg, hsl(210,81%,56%),hsl(210,81%,56%));::tc,.75,1,0,0deg]]></i>
+			<i id="wp-2" type="string"><![CDATA[background: repeating-linear-gradient(22.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(112.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(67.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(157.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),linear-gradient(90deg, hsl(210,81%,56%),hsl(210,81%,56%));::tc,.75,1,0,0deg]]></i>
+			<i id="wp-3" type="string"><![CDATA[background: repeating-linear-gradient(22.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(112.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(67.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(157.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),linear-gradient(90deg, hsl(210,81%,56%),hsl(210,81%,56%));::tc,.75,1,0,0deg]]></i>
+			<i id="ws-active" type="number"><![CDATA[1]]></i>
 			<i id="folder-color" type="string"><![CDATA[#157efb]]></i>
 			<i id="screen-saver-enabled" type="boolean"><![CDATA[true]]></i>
 			<i id="screen-saver-time" type="number"><![CDATA[10]]></i>
@@ -48,7 +54,7 @@
 			<i id="finder-icon-size" type="number"><![CDATA[77]]></i>
 			<i id="fs-dialog-file-view" type="string"><![CDATA[columns]]></i>
 			<i id="fs-dialog-style" type="string"><![CDATA[expanded]]></i>
-			<i id="fs-show-hidden-folders" type="boolean"><![CDATA[true]]></i>
+			<i id="fs-show-hidden-folders" type="boolean"><![CDATA[false]]></i>
 			<i id="lang-locale" type="string"><![CDATA[en-en]]></i>
 			<i id="i18n-calendar-months" type="json"><![CDATA[["January","February","March","April","May","June","July","August","September","October","November","December"]]]></i>
 			<i id="i18n-calendar-days" type="json"><![CDATA[["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]]]></i>
@@ -61,6 +67,9 @@
 				<item icon="applications" path="/fs/Applications"/>
 				<item icon="network" path="/fs/Network"/>
 			</i>
+			<i id="fs-subscription-id" type="string"><![CDATA[]]></i>
+			<i id="fs-purchased-storage" type="raw-xml"></i>
+			<i id="fs-cloud-storage" type="raw-xml"></i>
 			<i id="dock-3d-on" type="boolean"><![CDATA[false]]></i>
 			<i id="dock-app-indicators" type="boolean"><![CDATA[true]]></i>
 			<i id="dock-magnification-on" type="boolean"><![CDATA[false]]></i>
@@ -68,14 +77,24 @@
 			<i id="dock-auto-show-hide" type="boolean"><![CDATA[false]]></i>
 			<i id="dock-position" type="string"><![CDATA[bottom]]></i>
 			<i id="dock-size" type="number"><![CDATA[55]]></i>
+			<i id="dock-entries" type="raw-xml"></i>
+			<i id="desktop-icon-size" type="number"><![CDATA[80]]></i>
+			<i id="desktop-icons-hidden" type="boolean"><![CDATA[true]]></i>
+			<i id="desktop-icons-pos" type="raw-xml"></i>
+			<i id="sidebar-notification-duration" type="number"><![CDATA[4]]></i>
+			<i id="sidebar-widgets" type="raw-xml">
+				<i name="weather"/>
+				<i name="calendar"/>
+			</i>
 			<i id="menubar-clock" type="string"><![CDATA[digital]]></i>
-			<i id="menubar-volume" type="number"><![CDATA[24]]></i>
+			<i id="menubar-volume" type="number"><![CDATA[47]]></i>
 			<i id="menubar-hide-show" type="boolean"><![CDATA[false]]></i>
 			<i id="menubar-dateTime-toggle" type="boolean"><![CDATA[true]]></i>
 			<i id="menubar-dateTime-format" type="string"><![CDATA[ddd DD MMM HH:mm]]></i>
-			<i id="sys-date-time-diff" type="number"><![CDATA[-1368]]></i>
-			<i id="sys-time-zone" type="string"><![CDATA[+02:00]]></i>
-			<i id="workspace-wp-logo" type="string"><![CDATA[ctr,1,1,1,120deg]]></i>
+			<i id="sys-date-time-diff" type="number"><![CDATA[-365]]></i>
+			<i id="sys-time-zone" type="string"><![CDATA[+01:00]]></i>
+			<i id="last-login" type="string"><![CDATA[2024-04-05]]></i>
+			<i id="i18n-temperature-units" type="string"><![CDATA[C]]></i>
 		</Registry>
 		<WorkSpace>
 			<i name="ws-1">
@@ -96,10 +115,18 @@
 						<Menu name="Dark" shell="sys -o karaqu-dark" check-group="ui-theme"/>
 					</Menu>
 					<Menu type="divider"/>
+					<Menu name="Recent Items&#8230;" for="recent-items" disabled="1"/>
+					<Menu type="divider"/>
 					<Menu name="Quit"/>
 				</Menu>
 			</Group>
 			<Group>
+				<Menu icon="icon-volume" class="menubar-speakers_">
+					<Menu type="caption" name="Volume:"/>
+					<Menu type="slider" min="0" max="100" value="50" shell="sys -v"/>
+					<Menu type="divider"/>
+					<Menu name="Sound Preferences" shell="win -o preferences sound"/>
+				</Menu>
 				<Menu icon="icon-clock" class="menubar-date-time_">
 					<Menu name="View as Analogue" shell="sys -m clock analog" check-group="menubar-clock"/>
 					<Menu name="View as Digital" shell="sys -m clock digital" check-group="menubar-clock" is-checked="1"/>
