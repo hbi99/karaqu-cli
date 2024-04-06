@@ -34,11 +34,12 @@
     "chokidar": "^3.4.3",
     "cli-format": "^3.0.9",
     "colors": "^1.4.0",
-    "dotenv": "^8.2.0",
+    "dotenv": "^16.4.5",
     "enquirer": "^2.4.1",
     "express": "^4.17.1",
     "form-data": "^3.0.0",
     "karaqu-builder": "^0.1.2",
+    "node-fetch": "^3.3.2",
     "open": "^7.2.1",
     "progress": "^2.0.3"
   }
