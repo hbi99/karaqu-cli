@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 "use strict";
 
-import * as karaqu from "../lib/src/index.mjs"
+import * as karaqu from "../lib/index.mjs"
 
 let aliases = karaqu.aliases();
 let args = process.argv.splice(2);
