@@ -115,14 +115,24 @@
 				<Menu icon="icon-karaqu" name="Karaqu">
 					<Menu name="About Karaqu"/>
 					<Menu type="divider"/>
-					<Menu name="Theme&#8230;" for="ui-theme">
-						<Menu name="Light" shell="sys -o karaqu-light" check-group="ui-theme" is-checked="1"/>
-						<Menu name="Dark" shell="sys -o karaqu-dark" check-group="ui-theme"/>
+					<Menu name="Theme&#8230;" for="karaqu-themes">
+						<Menu name="Light" shell="gui -o karaqu-light" check-group="ui-theme" is-checked="1"/>
+						<Menu name="Dark" shell="gui -o karaqu-dark" check-group="ui-theme"/>
+						<Menu type="divider"/>
+						<Menu name="Royale Beige" shell="gui -o royale-beige" check-group="ui-theme"/>
+						<Menu name="Royale Amber" shell="gui -o royale-amber" check-group="ui-theme"/>
+						<Menu name="Royale Black" shell="gui -o royale-black" check-group="ui-theme"/>
+						<Menu name="Royale Emerald" shell="gui -o royale-emerald" check-group="ui-theme"/>
+						<Menu name="Royale Pink" shell="gui -o royale-pink" check-group="ui-theme"/>
+						<Menu name="Royale Purple" shell="gui -o royale-purple" check-group="ui-theme"/>
+						<Menu type="divider"/>
+						<Menu name="Glass Frosted" shell="gui -o glass-frosted" check-group="ui-theme"/>
+						<Menu name="Glass Distorted" shell="gui -o glass-distorted" check-group="ui-theme"/>
 					</Menu>
 					<Menu type="divider"/>
 					<Menu name="Recent Items&#8230;" for="recent-items" disabled="1"/>
 					<Menu type="divider"/>
-					<Menu name="Quit"/>
+					<Menu name="Quit" shell="sys -x"/>
 				</Menu>
 			</Group>
 			<Group>
@@ -140,11 +150,11 @@
 		</MenuBar>
 
 		<Menu for="desktop">
-			<Menu name="Reload" shell="sys -r"/>
+			<Menu name="Reload" shell="sys -xr"/>
 			<Menu type="divider"/>
-			<Menu name="Theme&#8230;" invoke="ui-theme"/>
+			<Menu name="Theme&#8230;" invoke="karaqu-themes"/>
 			<Menu type="divider"/>
-			<Menu name="Quit"/>
+			<Menu name="Quit" shell="sys -x"/>
 		</Menu>
 	</ContextMenu>
 </ledger>
