@@ -38,6 +38,11 @@
 			<User id="steve" name="Steve Jobs"/>
 			<User id="linus" name="Linus Torvalds"/>
 		</Friends>
+		<SidebarNotifications/>
+		<Recents>
+			<Apps/>
+			<Files/>
+		</Recents>
 		<Registry>
 			<i id="wp-wide" type="string"><![CDATA[]]></i>
 			<i id="wp-1" type="string"><![CDATA[background: repeating-linear-gradient(22.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(112.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(67.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),repeating-linear-gradient(157.5deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px,transparent 1px, transparent 21px,rgba(255,255,255,0.07) 21px, rgba(255,255,255,0.07) 22px,transparent 22px, transparent 62px,rgba(255,255,255,0.07) 62px, rgba(255,255,255,0.07) 63px,transparent 63px, transparent 123px),linear-gradient(90deg, hsl(210,81%,56%),hsl(210,81%,56%));::tc,.75,1,0,0deg]]></i>
@@ -48,7 +53,7 @@
 			<i id="screen-saver-enabled" type="boolean"><![CDATA[true]]></i>
 			<i id="screen-saver-time" type="number"><![CDATA[10]]></i>
 			<i id="screen-saver-name" type="string"><![CDATA[Colorful Ring]]></i>
-			<i id="ui" type="json"><![CDATA[{"theme":"royale-beige","theme-extras":"0","accent-color":"#f5822e"}]]></i>
+			<i id="ui" type="json"><![CDATA[{"theme":"karaqu-light","theme-extras":"0","accent-color":"#f5822e"}]]></i>
 			<i id="finder-default-path" type="string"><![CDATA[/fs/Desktop]]></i>
 			<i id="finder-file-view" type="string"><![CDATA[icons]]></i>
 			<i id="finder-icon-size" type="number"><![CDATA[77]]></i>
