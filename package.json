@@ -1,6 +1,6 @@
 {
   "name": "karaqu-cli",
-  "version": "0.1.2",
+  "version": "0.1.1",
   "description": "Command Line Interface for Karaqu",
   "type": "module",
   "scripts": {
@@ -17,12 +17,6 @@
   },
   "engines": {
     "node": "~20"
-  },
-  "nodemonConfig": {
-    "watch": [
-      "./bin/index.mjs",
-      "lib/**/*.*"
-    ]
   },
   "homepage": "https://github.com/hbi99/karaqu-cli#readme",
   "dependencies": {
