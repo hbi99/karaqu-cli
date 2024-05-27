@@ -1,6 +1,6 @@
 {
   "name": "karaqu-cli",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Command Line Interface for Karaqu",
   "type": "module",
   "scripts": {
@@ -17,6 +17,9 @@
   },
   "engines": {
     "node": "~20"
+  },
+  "bin": {
+    "karaqu": "./bin/index.js"
   },
   "homepage": "https://github.com/hbi99/karaqu-cli#readme",
   "dependencies": {
