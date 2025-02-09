@@ -1,6 +1,6 @@
 {
   "name": "karaqu-cli",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Command Line Interface for Karaqu",
   "type": "module",
   "scripts": {
@@ -14,9 +14,6 @@
   "license": "AGPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/hbi99/karaqu-cli/issues"
-  },
-  "engines": {
-    "node": "^18"
   },
   "bin": {
     "karaqu": "./bin/index.js"
